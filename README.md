@@ -52,9 +52,21 @@ Cursor 官方语言包能翻译一部分 VS Code 基础界面，但 Cursor 自�
 
 这不是普通 VS Code 插件，而是一个安装后补丁脚本。它会修改你本机已安装的 Cursor 应用资源，让 Cursor 自己的核心界面也能显示中文。
 
-## 快速开始
+## 一行安装
 
 运行前请先完全退出 Cursor。
+
+第一次安装、重装系统、换电脑，或者 Cursor 更新后重新打补丁，都可以直接使用：
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ztx888/cursor-zh-localizer/main/install.sh)"
+```
+
+运行完成后重新打开 Cursor 即可。
+
+## 查看源码后安装
+
+如果想先看清楚脚本做了什么，或希望把仓库保存在本机，使用这个方式：
 
 ```bash
 git clone https://github.com/ztx888/cursor-zh-localizer.git
@@ -62,7 +74,7 @@ cd cursor-zh-localizer
 node patch-cursor-zh.js
 ```
 
-也可以用 npm 脚本：
+也可以使用 npm 脚本：
 
 ```bash
 npm run patch
@@ -74,19 +86,15 @@ npm run patch
 npm run patch:backup
 ```
 
-## 一行安装
+## 更新 Cursor 后怎么办
 
-如果已经了解脚本内容、只是想快速重打补丁时，可以使用：
+Cursor 更新或重装会覆盖安装包里的文件，所以补丁会消失。处理方式很简单：
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ztx888/cursor-zh-localizer/main/install.sh)"
 ```
 
-更推荐第一次使用时采用 `git clone`，可以看清楚脚本做了什么，更加安心
-
-## 更新 Cursor 后怎么办
-
-Cursor 更新或重装会覆盖安装包里的文件，所以补丁会消失。处理方式很简单：
+如果你是通过 `git clone` 保存仓库的，也可以：
 
 ```bash
 cd cursor-zh-localizer
@@ -94,7 +102,7 @@ git pull
 node patch-cursor-zh.js
 ```
 
-如果换电脑或重装系统，重新安装官方 Cursor 后，再克隆本仓库运行一次即可。
+如果换电脑或重装系统，重新安装官方 Cursor 后，再运行上面的一行安装命令即可。
 
 ## 命令参数
 
