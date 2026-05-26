@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cursor 中文增强补丁</title>
+    <meta name="description" content="补齐 Cursor 官方语言包覆盖不到的中文界面。" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b1220;
+        --panel: #111827;
+        --muted: #94a3b8;
+        --text: #f8fafc;
+        --line: rgba(255, 255, 255, 0.12);
+        --green: #22c55e;
+        --cyan: #38bdf8;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at 20% 0%, rgba(56, 189, 248, 0.16), transparent 34%),
+          radial-gradient(circle at 80% 8%, rgba(34, 197, 94, 0.13), transparent 30%), var(--bg);
+        color: var(--text);
+      }
+      main {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 72px 0;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 40px;
+        align-items: center;
+        min-height: 72vh;
+      }
+      .eyebrow {
+        display: inline-flex;
+        border: 1px solid rgba(34, 197, 94, 0.35);
+        background: rgba(34, 197, 94, 0.1);
+        color: #bbf7d0;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      h1 {
+        font-size: clamp(44px, 7vw, 82px);
+        line-height: 0.98;
+        letter-spacing: 0;
+        margin: 24px 0;
+      }
+      p {
+        color: var(--muted);
+        font-size: 19px;
+        line-height: 1.7;
+        margin: 0;
+      }
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 32px;
+      }
+      a {
+        color: inherit;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 18px;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        text-decoration: none;
+        font-weight: 750;
+      }
+      .primary {
+        color: #03121f;
+        background: linear-gradient(90deg, var(--green), var(--cyan));
+        border: 0;
+      }
+      .terminal {
+        border: 1px solid var(--line);
+        background: rgba(17, 24, 39, 0.82);
+        border-radius: 18px;
+        padding: 18px;
+        box-shadow: 0 20px 70px rgba(0, 0, 0, 0.32);
+      }
+      .bar {
+        display: flex;
+        gap: 8px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--line);
+      }
+      .dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+      }
+      pre {
+        margin: 18px 0 0;
+        overflow: auto;
+        color: #d1fae5;
+        font-size: 15px;
+        line-height: 1.8;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-top: 32px;
+      }
+      .item {
+        border: 1px solid var(--line);
+        background: rgba(17, 24, 39, 0.72);
+        border-radius: 14px;
+        padding: 18px;
+      }
+      .item strong {
+        display: block;
+        margin-bottom: 8px;
+      }
+      .item span {
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      @media (max-width: 820px) {
+        main {
+          padding: 40px 0;
+        }
+        .hero,
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div>
+          <span class="eyebrow">macOS Cursor 非官方中文增强补丁</span>
+          <h1>让 Cursor 真正好懂</h1>
+          <p>
+            补齐官方语言包覆盖不到的设置页、Agent 面板、模型设置、审查页、悬浮提示和工具调用状态。
+            安装官方 Cursor 后运行一次，更新后再运行一次。
+          </p>
+          <div class="actions">
+            <a class="button primary" href="https://github.com/ztx888/cursor-zh-localizer">查看 GitHub</a>
+            <a class="button" href="https://github.com/ztx888/cursor-zh-localizer/issues">反馈漏翻</a>
+          </div>
+        </div>
+        <div class="terminal" aria-label="Install command">
+          <div class="bar">
+            <span class="dot" style="background:#f87171"></span>
+            <span class="dot" style="background:#fbbf24"></span>
+            <span class="dot" style="background:#34d399"></span>
+          </div>
+          <pre><code>git clone https://github.com/ztx888/cursor-zh-localizer.git
+cd cursor-zh-localizer
+node patch-cursor-zh.js</code></pre>
+        </div>
+      </section>
+      <section class="grid">
+        <div class="item"><strong>覆盖更完整</strong><span>设置、智能体、模型、审查、工具调用和常见提示统一补齐。</span></div>
+        <div class="item"><strong>语义更自然</strong><span>按实际操作场景翻译，不把难懂直译塞进界面。</span></div>
+        <div class="item"><strong>更新可重打</strong><span>Cursor 更新覆盖后，重新运行脚本即可恢复汉化。</span></div>
+      </section>
+    </main>
+  </body>
+</html>

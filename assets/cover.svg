@@ -1,0 +1,47 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101828"/>
+      <stop offset="0.48" stop-color="#162033"/>
+      <stop offset="1" stop-color="#0B1220"/>
+    </linearGradient>
+    <linearGradient id="card" x1="178" y1="120" x2="1102" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.13"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.06"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="250" y1="419" x2="622" y2="419" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22C55E"/>
+      <stop offset="1" stop-color="#38BDF8"/>
+    </linearGradient>
+    <filter id="shadow" x="142" y="92" width="996" height="476" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="16"/>
+      <feGaussianBlur stdDeviation="18"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.28 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2" result="shape"/>
+    </filter>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <path d="M0 514C162 462 295 444 462 480C646 519 765 560 955 506C1074 472 1167 405 1280 386V640H0V514Z" fill="#0F766E" fill-opacity="0.16"/>
+  <g filter="url(#shadow)">
+    <rect x="178" y="120" width="924" height="400" rx="28" fill="url(#card)" stroke="#FFFFFF" stroke-opacity="0.14"/>
+    <rect x="210" y="152" width="860" height="50" rx="14" fill="#0B1220" fill-opacity="0.74" stroke="#FFFFFF" stroke-opacity="0.09"/>
+    <circle cx="236" cy="177" r="6" fill="#F87171"/>
+    <circle cx="258" cy="177" r="6" fill="#FBBF24"/>
+    <circle cx="280" cy="177" r="6" fill="#34D399"/>
+    <text x="320" y="184" fill="#CBD5E1" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="17">Cursor 中文增强补丁</text>
+    <text x="250" y="278" fill="#F8FAFC" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="58" font-weight="800">让 Cursor 真正好懂</text>
+    <text x="252" y="331" fill="#CBD5E1" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="24">覆盖设置页、Agent 面板、模型菜单、审查页和悬浮提示</text>
+    <rect x="250" y="391" width="372" height="56" rx="12" fill="url(#accent)"/>
+    <text x="282" y="427" fill="#04111D" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="20" font-weight="700">node patch-cursor-zh.js</text>
+    <rect x="650" y="391" width="170" height="56" rx="12" fill="#111827" stroke="#334155"/>
+    <text x="682" y="427" fill="#E2E8F0" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="20" font-weight="650">macOS</text>
+    <rect x="842" y="391" width="182" height="56" rx="12" fill="#111827" stroke="#334155"/>
+    <text x="874" y="427" fill="#E2E8F0" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="20" font-weight="650">Cursor</text>
+    <rect x="838" y="236" width="166" height="34" rx="17" fill="#22C55E" fill-opacity="0.16" stroke="#22C55E" stroke-opacity="0.38"/>
+    <text x="862" y="259" fill="#86EFAC" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="16" font-weight="700">非官方增强补丁</text>
+  </g>
+</svg>

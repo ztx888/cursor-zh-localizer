@@ -1,0 +1,43 @@
+name: 漏翻反馈
+description: 报告 Cursor 里仍然没有汉化的界面文案
+title: "[漏翻] "
+labels: ["translation"]
+body:
+  - type: input
+    id: cursor-version
+    attributes:
+      label: Cursor 版本
+      placeholder: 例如 3.5.33
+    validations:
+      required: true
+  - type: input
+    id: macos-version
+    attributes:
+      label: macOS 版本
+      placeholder: 例如 macOS 15.x
+    validations:
+      required: true
+  - type: textarea
+    id: original
+    attributes:
+      label: 英文原文
+      description: 请复制界面上看到的英文，多个可以分行填写。
+    validations:
+      required: true
+  - type: textarea
+    id: location
+    attributes:
+      label: 出现位置
+      description: 例如 Settings > Models，或点击某个按钮后的弹窗。
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: 截图
+      description: 直接粘贴截图，越完整越好。
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 建议翻译
+      description: 如果你有更自然的中文表达，可以写在这里。

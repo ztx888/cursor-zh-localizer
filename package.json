@@ -1,0 +1,35 @@
+{
+  "name": "cursor-zh-localizer",
+  "version": "1.0.0",
+  "description": "一个面向 macOS Cursor 的中文增强补丁，覆盖设置页、Agent 面板、模型菜单、审查页和常见悬浮提示。",
+  "type": "commonjs",
+  "bin": {
+    "cursor-zh-localizer": "./patch-cursor-zh.js"
+  },
+  "scripts": {
+    "patch": "node patch-cursor-zh.js",
+    "patch:backup": "node patch-cursor-zh.js --backup",
+    "check": "node --check patch-cursor-zh.js"
+  },
+  "keywords": [
+    "cursor",
+    "localization",
+    "chinese",
+    "zh-cn",
+    "macos",
+    "patch"
+  ],
+  "author": "ztx888",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ztx888/cursor-zh-localizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ztx888/cursor-zh-localizer/issues"
+  },
+  "homepage": "https://github.com/ztx888/cursor-zh-localizer#readme"
+}
