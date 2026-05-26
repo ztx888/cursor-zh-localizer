@@ -8,13 +8,26 @@
 **设置页、Agent 面板、模型设置、审查页、悬浮提示、工具调用状态，一次补齐。**
 
 
-<img width="678" height="286" alt="image" src="https://github.com/user-attachments/assets/a16c2e0f-619b-401d-a0ec-9459c4ca1386" />
-<img width="1456" height="1354" alt="image" src="https://github.com/user-attachments/assets/89078888-a4f3-4fbd-ad32-4833d11b4b61" />
-<img width="498" height="848" alt="image" src="https://github.com/user-attachments/assets/48c9cefa-f708-44a6-a8ba-1b70835bf71d" />
+<br />
 
+<p align="center">
+  <img width="640" alt="Cursor 中文汉化增强补丁概览" src="https://github.com/user-attachments/assets/a16c2e0f-619b-401d-a0ec-9459c4ca1386" />
+</p>
 
-
-
+<table>
+  <tr>
+    <td width="66%" align="center" valign="top">
+      <img width="560" alt="Cursor 设置与智能体界面汉化效果" src="https://github.com/user-attachments/assets/89078888-a4f3-4fbd-ad32-4833d11b4b61" />
+      <br />
+      <sub>设置页、模型参数与智能体界面</sub>
+    </td>
+    <td width="34%" align="center" valign="top">
+      <img width="250" alt="Cursor 菜单与细节汉化效果" src="https://github.com/user-attachments/assets/48c9cefa-f708-44a6-a8ba-1b70835bf71d" />
+      <br />
+      <sub>菜单、悬浮提示与细节文案</sub>
+    </td>
+  </tr>
+</table>
 
 </div>
 

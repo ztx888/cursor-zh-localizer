@@ -1,6 +1,6 @@
 {
   "name": "cursor-zh-localizer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "一个面向 macOS Cursor 的中文增强补丁，覆盖设置页、Agent 面板、模型菜单、审查页和常见悬浮提示。",
   "type": "commonjs",
   "bin": {
