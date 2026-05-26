@@ -1,21 +1,27 @@
 <div align="center">
 
-<img src="assets/cover.svg" alt="Cursor 中文增强补丁" width="100%" />
+# Cursor 中文汉化增强补丁
 
-# Cursor 中文增强补丁
-
-把 Cursor 里那些语言包覆盖不到的英文界面，补成更自然、更适合日常使用的中文。
+把 Cursor 语言包覆盖不到的英文界面，全部汉化为更自然、更适合日常使用的中文。
 
 
 **设置页、Agent 面板、模型设置、审查页、悬浮提示、工具调用状态，一次补齐。**
+
+
+<img width="678" height="286" alt="image" src="https://github.com/user-attachments/assets/a16c2e0f-619b-401d-a0ec-9459c4ca1386" />
+<img width="1456" height="1354" alt="image" src="https://github.com/user-attachments/assets/89078888-a4f3-4fbd-ad32-4833d11b4b61" />
+<img width="724" height="486" alt="image" src="https://github.com/user-attachments/assets/6265e0e9-50ca-42b9-b90c-929742c2839d" />
+
+
+
 
 </div>
 
 ---
 
-## 一句话
+## 这是什么
 
-这是一个面向 macOS Cursor 的中文增强补丁：安装官方 Cursor 后运行一次，就能把官方语言包没有覆盖到的大量核心界面补成中文。
+这是一个面向 macOS Cursor 的中文增强补丁：安装官方 Cursor 后运行一次，就能把官方语言包没有覆盖到的所有核心界面补成中文，甚至包括模型对话和调用过程
 
 ## 它解决什么
 
