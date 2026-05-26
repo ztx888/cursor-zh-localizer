@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const childProcess = require('child_process');
 const os = require('os');
 
-const version = '1.0.1';
+const version = '1.0.2';
 
 function getArgValue(name) {
   const index = process.argv.indexOf(name);
@@ -911,6 +911,8 @@ const replacements = [
   ['mu({id:"toggleDevTools",title:"Toggle Developer Tools"', 'mu({id:"toggleDevTools",title:"切换开发者工具"'],
   ['title:ln(13439,"Toggle Developer Tools")', 'title:ln(13439,"切换开发者工具")'],
   ['title:ln(8450,"Open Process Explorer")', 'title:ln(8450,"打开进程资源管理器")'],
+  ['title:ln(8451,"Open Workspace Process Explorer")', 'title:ln(8451,"打开工作区进程资源管理器")'],
+  ['mu({id:"openWorkspaceProcessExplorer",title:"Process Explorer"', 'mu({id:"openWorkspaceProcessExplorer",title:"进程资源管理器"'],
   ['title:"Zoom In"', 'title:"放大"'],
   ['title:"Zoom Out"', 'title:"缩小"'],
   ['title:"Reset Zoom"', 'title:"重置缩放"'],
@@ -919,7 +921,11 @@ const replacements = [
   ['title:{...ln(13475,"Zoom Out")', 'title:{...ln(13475,"缩小")'],
   ['title:{...ln(13476,"Reset Zoom")', 'title:{...ln(13476,"重置缩放")'],
   ['title:{...ln(13472,"Close Window")', 'title:{...ln(13472,"关闭窗口")'],
-  ['label:ln(7017,"Emmet: Expand Abbreviation")', 'label:ln(7017,"Emmet：展开缩写")'],
+  ['label:ln(7017,"Emmet: Expand Abbreviation")', 'label:ln(7017,"展开 Emmet 缩写")'],
+  ['label:ln(7017,"Emmet：展开缩写")', 'label:ln(7017,"展开 Emmet 缩写")'],
+  ['id:"thinking",name:"Thinking",markdownTooltip:"Enable extended thinking for complex reasoning tasks"', 'id:"thinking",name:"扩展思考",markdownTooltip:"启用扩展思考，用于复杂推理任务"'],
+  ['id:"thinking",name:"Thinking",markdownTooltip:"Enable extended thinking for complex reasoning"', 'id:"thinking",name:"扩展思考",markdownTooltip:"启用扩展思考，用于复杂推理"'],
+  ['id:"context",name:"Context",markdownTooltip:"Maximum context window size"', 'id:"context",name:"上下文",markdownTooltip:"最大上下文窗口大小"'],
   ['title:ln(3273,"Toggle Secondary Side Bar Visibility")', 'title:ln(3273,"切换辅助侧边栏显示")'],
   ['title:ln(3274,"Focus into Secondary Side Bar")', 'title:ln(3274,"聚焦到辅助侧边栏")'],
   ['title:ln(3275,"Hide Secondary Side Bar")', 'title:ln(3275,"隐藏辅助侧边栏")'],
@@ -2486,12 +2492,17 @@ const nlsTextReplacements = [
   ['"Reset Zoom"', '"重置缩放"'],
   ['"Window Zoom"', '"窗口缩放"'],
   ['"Zoom Level: {0} ({1}%)"', '"缩放级别：{0}（{1}%）"'],
-  ['"Emmet: E&&xpand Abbreviation"', '"Emmet：展开缩写"'],
-  ['"Emmet: Expand Abbreviation"', '"Emmet：展开缩写"'],
+  ['"Emmet: E&&xpand Abbreviation"', '"展开 Emmet 缩写"'],
+  ['"Emmet: Expand Abbreviation"', '"展开 Emmet 缩写"'],
+  ['"Emmet：展开缩写"', '"展开 Emmet 缩写"'],
   ['"&&Close Window"', '"关闭窗口"'],
   ['"Clos&&e Window"', '"关闭窗口"'],
   ['"Close Window"', '"关闭窗口"'],
+  ['"Give &&Feedback..."', '"反馈..."'],
+  ['"Open &&Process Explorer"', '"打开进程资源管理器"'],
+  ['"Open Workspace Process Explorer"', '"打开工作区进程资源管理器"'],
   ['Open Process Explorer', '打开进程资源管理器'],
+  ['Process Explorer', '进程资源管理器'],
   ['Toggle Developer Tools', '切换开发者工具'],
   ['Open Glass and Switch Model', '打开智能体窗口并切换模型'],
   ['Give Feedback...', '反馈...'],
@@ -2573,6 +2584,18 @@ function sqliteQuote(value) {
 }
 
 function patchReasoningDefinitions(value) {
+  const setEnumDisplayNames = (node, namesByValue) => {
+    const values = node.parameterType?.enumParameter?.values;
+    if (!Array.isArray(values)) return;
+    for (const option of values) {
+      if (!option || typeof option !== 'object') continue;
+      const key = String(option.value ?? option.displayName ?? '').toLowerCase();
+      if (Object.prototype.hasOwnProperty.call(namesByValue, key)) {
+        option.displayName = namesByValue[key];
+      }
+    }
+  };
+
   const visit = (node) => {
     if (!node || typeof node !== 'object') return;
     if (Array.isArray(node)) {
@@ -2597,6 +2620,29 @@ function patchReasoningDefinitions(value) {
           else if (key === 'high') option.displayName = 'High';
           else if (key === 'xhigh' || key === 'extra high') option.displayName = 'Extra High';
         }
+      }
+    } else if (node.id === 'thinking') {
+      if (node.name === 'Thinking') node.name = '扩展思考';
+      if (
+        node.markdownTooltip === 'Enable extended thinking' ||
+        node.markdownTooltip === 'Enable extended thinking for complex reasoning' ||
+        node.markdownTooltip === 'Enable extended thinking for complex reasoning tasks'
+      ) {
+        node.markdownTooltip = '启用扩展思考，用于复杂推理';
+      }
+    } else if (node.id === 'effort') {
+      if (node.name === 'Effort') node.name = '思考强度';
+      setEnumDisplayNames(node, {
+        low: 'Low',
+        medium: 'Medium',
+        high: 'High',
+        xhigh: 'Extra High',
+        max: 'Max',
+      });
+    } else if (node.id === 'context') {
+      if (node.name === 'Context') node.name = '上下文';
+      if (node.markdownTooltip === 'Maximum context window size') {
+        node.markdownTooltip = '最大上下文窗口大小';
       }
     }
 
