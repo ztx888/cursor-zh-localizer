@@ -6,9 +6,6 @@
 
 把 Cursor 里那些语言包覆盖不到的英文界面，补成更自然、更适合日常使用的中文。
 
-[![macOS](https://img.shields.io/badge/macOS-Cursor-111827?style=for-the-badge&logo=apple&logoColor=white)](#)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-16a34a?style=for-the-badge&logo=nodedotjs&logoColor=white)](#)
-[![License](https://img.shields.io/github/license/ztx888/cursor-zh-localizer?style=for-the-badge)](LICENSE)
 
 **设置页、Agent 面板、模型设置、审查页、悬浮提示、工具调用状态，一次补齐。**
 
