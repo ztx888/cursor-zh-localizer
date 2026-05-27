@@ -155,10 +155,6 @@ node patch-cursor-zh.js --app "/path/to/Cursor.app"
 
 脚本不会修改你的项目代码，也不修改账号信息。它只是修改 Cursor 应用资源，用户界面配置做少量中文汉化。
 
-### 打完补丁后 Cursor 提示损坏怎么办？
-
-一般不会遇到这个情况，先确认 Cursor 完全退出，再重新运行补丁。macOS 如果因为下载隔离标记导致异常，可以先查看本仓库 issue，或提交你的系统版本、Cursor 版本和报错截图。
-
 ### Cursor 更新后汉化没了？
 
 这是正常现象。更新会覆盖安装包资源，重新运行补丁即可。
@@ -175,6 +171,18 @@ node patch-cursor-zh.js --app "/path/to/Cursor.app"
 截图：
 建议翻译：
 ```
+
+## 友情链接
+
+<table>
+  <tr>
+    <td width="100%" valign="middle">
+      <strong><a href="https://linux.do">LINUX DO（L 站）</a></strong>
+      <br />
+      <sub>新的理想型社区 · Where possible begins.</sub>
+    </td>
+  </tr>
+</table>
 
 ## 免责声明
 
