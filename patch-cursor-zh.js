@@ -298,6 +298,7 @@ const replacements = [
   ['return e?"Automatically run operations Smart Mode classifies as safe, using sandboxing when possible":"Automatically run operations Smart Mode classifies as safe"', 'return e?"自动运行智能模式判定为安全的操作，并尽可能使用沙盒":"自动运行智能模式判定为安全的操作"'],
   ['content:"Automatically run operations Smart Mode classifies as safe"', 'content:"自动运行智能模式判定为安全的操作"'],
   ['return"Automatically run all operations without asking for permission"', 'return"不再询问，自动运行所有操作"'],
+  ['content:"Configure auto-run settings"', 'content:"配置自动运行设置"'],
   ['Run in Sandbox is available. It runs commands in a restricted environment to reduce risk.', '可以使用“在沙盒中运行”。它会在受限制的环境中运行命令，以降低风险。'],
   ['"Sandbox: only fetches from domains in your allowlist"', '"沙盒：只从允许列表中的域名获取内容"'],
   ['"No sandbox: full filesystem and network access."', '"无沙盒：拥有完整文件系统和网络访问权限。"'],
@@ -832,6 +833,7 @@ const replacements = [
   ['label:"Rename",enabled:!0,class:"",tooltip:"Rename chat"', 'label:"重命名",enabled:!0,class:"",tooltip:"重命名聊天"'],
   ['label:"Archive Prior Chats",enabled:!0,class:"",tooltip:"Archive all chats older than this one"', 'label:"归档更早的聊天",enabled:!0,class:"",tooltip:"归档早于此聊天的所有聊天"'],
   ['children:"Stop All"', 'children:"全部停止"'],
+  ['xt?"Stopping...":"Stop All Runs"', 'xt?"正在停止...":"停止全部运行"'],
   ['"aria-label":`Stop ${se.length} running ${se.length===1?"agent":"agents"}`', '"aria-label":`停止 ${se.length} 个运行中的智能体`'],
   ['"aria-label":`Stop ${pt.length} running ${pt.length===1?"agent":"agents"}`', '"aria-label":`停止 ${pt.length} 个运行中的智能体`'],
   ['children:"Waiting for upload..."', 'children:"等待上传..."'],
@@ -904,6 +906,16 @@ const replacements = [
   ['title:"Go Forward",icon:"arrow-right"', 'title:"前进",icon:"arrow-right"'],
   ['title:"Go Back in Files",icon:"arrow-left"', 'title:"在文件中后退",icon:"arrow-left"'],
   ['title:"Go Forward in Files",icon:"arrow-right"', 'title:"在文件中前进",icon:"arrow-right"'],
+  ['title:ln(3176,"Navigate to the View on the Left")', 'title:ln(3176,"聚焦左侧视图")'],
+  ['title:ln(3177,"Navigate to the View on the Right")', 'title:ln(3177,"聚焦右侧视图")'],
+  ['title:ln(3178,"Navigate to the View Above")', 'title:ln(3178,"聚焦上方视图")'],
+  ['title:ln(3179,"Navigate to the View Below")', 'title:ln(3179,"聚焦下方视图")'],
+  ['n.notificationService.info(`Navigating to: ${t.toString()}`)', 'n.notificationService.info(`正在导航到：${t.toString()}`)'],
+  ['title:"Breadcrumbs",get children(){return[', 'title:"路径导航",get children(){return['],
+  ['ln(6467,"Navigate to Top of Call Stack")', 'ln(6467,"跳到调用堆栈顶部")'],
+  ['ln(6468,"Navigate to Bottom of Call Stack")', 'ln(6468,"跳到调用堆栈底部")'],
+  ['ln(6469,"Navigate Up Call Stack")', 'ln(6469,"上移调用堆栈")'],
+  ['ln(6470,"Navigate Down Call Stack")', 'ln(6470,"下移调用堆栈")'],
   ['static{this.LABEL="Add Symbol to Current Chat"}', 'static{this.LABEL="添加符号到当前聊天"}'],
   ['metadata:{description:"Add Symbol to Current Chat..."}', 'metadata:{description:"添加符号到当前聊天..."}'],
   ['static{this.LABEL="Add Symbol to New Chat"}', 'static{this.LABEL="添加符号到新聊天"}'],
@@ -912,7 +924,19 @@ const replacements = [
   ['title:ln(13439,"Toggle Developer Tools")', 'title:ln(13439,"切换开发者工具")'],
   ['title:ln(8450,"Open Process Explorer")', 'title:ln(8450,"打开进程资源管理器")'],
   ['title:ln(8451,"Open Workspace Process Explorer")', 'title:ln(8451,"打开工作区进程资源管理器")'],
+  ['title:ln(8452,"Start CPU Profiler")', 'title:ln(8452,"启动 CPU 性能分析器")'],
+  ['title:ln(8453,"Start Memory Profiler")', 'title:ln(8453,"启动内存分析器")'],
+  ['title:ln(8454,"Start GC Profiler")', 'title:ln(8454,"启动 GC 分析器")'],
+  ['title:ln(8455,"Stop Tracing")', 'title:ln(8455,"停止追踪")'],
+  ['label:"Stop",tooltip:"Stop profiler and show results"', 'label:"停止",tooltip:"停止性能分析并显示结果"'],
+  ['label:"Stop",tooltip:"Stop",enabled:!0,class:"codicon codicon-stop"', 'label:"停止",tooltip:"停止",enabled:!0,class:"codicon codicon-stop"'],
+  ['message:"Extension Host Profiler is running"', 'message:"扩展宿主性能分析器正在运行"'],
+  ['message:"Electron Trace is running"', 'message:"Electron 追踪正在运行"'],
+  ['message:"Memory Profiler is running"', 'message:"内存分析器正在运行"'],
+  ['message:"GC Profiler is running"', 'message:"GC 分析器正在运行"'],
   ['mu({id:"openWorkspaceProcessExplorer",title:"Process Explorer"', 'mu({id:"openWorkspaceProcessExplorer",title:"进程资源管理器"'],
+  ['V("span",{children:"Open"})', 'V("span",{children:"打开"})'],
+  ['V("span",{children:"Unlink"})', 'V("span",{children:"取消链接"})'],
   ['title:"Zoom In"', 'title:"放大"'],
   ['title:"Zoom Out"', 'title:"缩小"'],
   ['title:"Reset Zoom"', 'title:"重置缩放"'],
@@ -1144,6 +1168,9 @@ const replacements = [
   ['placeholder:"Plan body..."', 'placeholder:"计划正文..."'],
   ['children:"Save to workspace"', 'children:"保存到工作区"'],
   ['children:"Reload"', 'children:"重新加载"'],
+  ['if(rv())return"Add more optional details"', 'if(rv())return"补充更多可选细节"'],
+  ['CD.pendingQuestionnaire?"Add more optional details...":"Send follow-up"', 'CD.pendingQuestionnaire?"补充更多可选细节...":"发送追问"'],
+  ['"Taking longer than expected\\u2026"', '"用时比预期更久\\u2026"'],
   ['return"Plan, Build, / for commands, @ for context"', 'return"计划、构建，/ 输入命令，@ 引用上下文"'],
   ['return"Ask, learn, brainstorm"', 'return"对话、学习、头脑风暴"'],
   ['return"提问、学习、头脑风暴"', 'return"对话、学习、头脑风暴"'],
@@ -1172,8 +1199,41 @@ const replacements = [
   ['return"Ask follow-ups in the worktree"', 'return"在工作树中继续追问"'],
   ['return"Add a follow-up"', 'return"添加追问"'],
   ['children:"Plans"', 'children:"计划"'],
+  ['placeholder:"Start writing your plan..."', 'placeholder:"开始编写你的计划..."'],
   ['"Switch plan"', '"切换计划"'],
+  ['cv_=wt("<div>New project")', 'cv_=wt("<div>新建项目")'],
+  ['kCf=wt("<div>Open project")', 'kCf=wt("<div>打开项目")'],
+  ['dv_=wt("<div class=empty-screen-view-all>View all (<!>)")', 'dv_=wt("<div class=empty-screen-view-all>查看全部（<!>）")'],
+  ['mv_=wt("<div><div><div><span>Recent projects</span></div></div><div>")', 'mv_=wt("<div><div><div><span>最近项目</span></div></div><div>")'],
+  ['hv_=wt(\'<div class=empty-screen-glass-cta>Try a new window for running parallel agents<span class="cursor-icon ui-icon"aria-hidden=true>\')', 'hv_=wt(\'<div class=empty-screen-glass-cta>试试用新窗口并行运行智能体<span class="cursor-icon ui-icon"aria-hidden=true>\')'],
+  ['`Open project: ${n.projectName}`', '`打开项目：${n.projectName}`'],
+  ['h.textContent="View All"', 'h.textContent="查看全部"'],
+  ['s=Xe(()=>e.serverConfigService.cachedServerConfig.chatConfig?.summarizationMessage||"Chat context summarized")', 's=Xe(()=>e.serverConfigService.cachedServerConfig.chatConfig?.summarizationMessage||"上下文已压缩")'],
+  ['return he(Vex,{get action(){return ss(()=>!!o())()?"Summarizing chat context":s()},get loading(){return o()}})', 'return he(Vex,{get action(){return ss(()=>!!o())()?"正在压缩上下文":s()},get loading(){return o()}})'],
+  ['"Chat context summarized.":"上下文已压缩。"', '"Chat context summarized.":"上下文已压缩"'],
+  ['"Summarizing chat context.":"正在压缩上下文。"', '"Summarizing chat context.":"正在压缩上下文"'],
+  ['"Chat context compacted.":"上下文已压缩。"', '"Chat context compacted.":"上下文已压缩"'],
+  ['"Compacting chat context.":"正在压缩上下文。"', '"Compacting chat context.":"正在压缩上下文"'],
+  ['"Context summarized.":"上下文已压缩。"', '"Context summarized.":"上下文已压缩"'],
+  ['"Summarized context.":"上下文已压缩。"', '"Summarized context.":"上下文已压缩"'],
+  ['"Summarized chat context.":"上下文已压缩。"', '"Summarized chat context.":"上下文已压缩"'],
+  ['"Context compacted.":"上下文已压缩。"', '"Context compacted.":"上下文已压缩"'],
+  ['"Compressing context.":"正在压缩上下文。"', '"Compressing context.":"正在压缩上下文"'],
+  ['"Compacting context.":"正在压缩上下文。"', '"Compacting context.":"正在压缩上下文"'],
+  ['tooltipData:{markdownContent:`**Inherit Agent Model**\n\nUse the existing agent model to build the plan.`}', 'tooltipData:{markdownContent:`**继承智能体模型**\n\n使用当前智能体模型来构建计划。`}'],
   ['children:"Built"', 'children:"已构建"'],
+  ['q.addEventListener("mouseenter",$=>t({content:`Build plan (${r()??Qut("\\u23CE")})`,target:$.currentTarget}))', 'q.addEventListener("mouseenter",$=>t({content:`构建计划 (${r()??Qut("\\u23CE")})`,target:$.currentTarget}))'],
+  ['q.addEventListener("mouseenter",$=>t({content:n.cloudModeActive?"Build in Cloud selected - configure below":`Build plan (${r()??Qut("\\u23CE")})`,target:$.currentTarget}))', 'q.addEventListener("mouseenter",$=>t({content:n.cloudModeActive?"已选择云端构建，请在下方配置":`构建计划 (${r()??Qut("\\u23CE")})`,target:$.currentTarget}))'],
+  ['ss(()=>n.planBuildStatus===YB.ACTIVE?"Building":"Build")', 'ss(()=>n.planBuildStatus===YB.ACTIVE?"正在构建":"构建")'],
+  ['WGd={agent:"Build Locally",background:"Build in Cloud"}', 'WGd={agent:"本地构建",background:"云端构建"}'],
+  ['Vry="Parallelize Build with Multitask Mode."', 'Vry="使用多任务模式并行构建。"'],
+  ['"Parallelize Build with Multitask Mode."', '"使用多任务模式并行构建。"'],
+  ['title:"Build Locally",subTitle:"Default"', 'title:"本地构建",subTitle:"默认"'],
+  ['title:"Build in Cloud",description:n.cloudDescription', 'title:"云端构建",description:n.cloudDescription'],
+  ['title:"Build in Parallel",icon:kt.circles', 'title:"并行构建",icon:kt.circles'],
+  ['n.planBuildStatus===YB.ACTIVE?"Building":n.cloudModeActive?"Build in Cloud":"Build"', 'n.planBuildStatus===YB.ACTIVE?"正在构建":n.cloudModeActive?"云端构建":"构建"'],
+  ['n.message.simulatedMsgReason===uy.BUILD_IN_PARALLEL?"并行构建计划":"Build"', 'n.message.simulatedMsgReason===uy.BUILD_IN_PARALLEL?"并行构建计划":"构建"'],
+  ['title:"Open Build Menu"', 'title:"打开构建菜单"'],
   ['children:"Build in Parallel"', 'children:"并行构建"'],
   ['"More actions"', '"更多操作"'],
   ['children:"Preview"', 'children:"预览"'],
@@ -1185,8 +1245,16 @@ const replacements = [
   ['children:"Build in New Agent"', 'children:"在新智能体中构建"'],
   ['title:"No agents yet",description:"Create an agent to start working on tasks",actionTitle:"New Agent"', 'title:"还没有智能体",description:"创建一个智能体来开始处理任务",actionTitle:"新建智能体"'],
   ['children:"No agents yet"', 'children:"还没有智能体"'],
+  ['o=`Referenced by ${s} Agent${s!==1?"s":""}`', 'o=`被 ${s} 个智能体引用`'],
+  ['p=`Referenced by ${t.length} Agent${t.length!==1?"s":""}`', 'p=`被 ${t.length} 个智能体引用`'],
+  ['children:" \\xB7 Author"', 'children:" · 作者"'],
+  ['children:[" ","\\xB7 ","Author"]', 'children:[" ","· ","作者"]'],
+  ['children:[" \\xB7 ",t.assignedTodoCount," todo",t.assignedTodoCount!==1?"s":""," assigned"]', 'children:[" · ",t.assignedTodoCount," 个待办已分配"]'],
+  ['children:[V(eo,{name:"plus",size:"xs","aria-hidden":"true"}),"New"]', 'children:[V(eo,{name:"plus",size:"xs","aria-hidden":"true"}),"新建"]'],
+  ['w=o?`Open agent ${a}`:a', 'w=o?`打开智能体 ${a}`:a'],
   ['children:"Show More"', 'children:"显示更多"'],
   ['children:"Show Less"', 'children:"收起"'],
+  ['Pe(q,()=>p()?"Hide":"View all")', 'Pe(q,()=>p()?"收起":"查看全部")'],
   ['label:"Use Multiple Models","data-testid":"multi-model-toggle",children:"Use Multiple Models"', 'label:"使用多个模型","data-testid":"multi-model-toggle",children:"使用多个模型"'],
   ['title:{value:"Open Branch Menu",original:"Open Branch Menu"}', 'title:{value:"打开分支菜单",original:"Open Branch Menu"}'],
   ['label:"No MCP servers",children:b?"No servers match your search":"No MCP servers available"', 'label:"没有 MCP 服务器",children:b?"没有匹配搜索的服务器":"没有可用的 MCP 服务器"'],
@@ -1200,6 +1268,12 @@ const replacements = [
   ['title:"Download request content"', 'title:"下载请求内容"'],
   ['message:"Request ID copied to clipboard"', 'message:"请求 ID 已复制到剪贴板"'],
   ['message:"No request ID found"', 'message:"没有找到请求 ID"'],
+  ['return{kind:"tool_executing",label:"Tool executing",detail:jJf(t?.replace(/Delta$/,""))}', 'return{kind:"tool_executing",label:"正在执行工具",detail:jJf(t?.replace(/Delta$/,""))}'],
+  ['return{kind:"waiting_server_next",label:"Waiting for heartbeat"}', 'return{kind:"waiting_server_next",label:"等待响应"}'],
+  ['w({kind:"waiting_server_next",label:"Waiting for heartbeat"})', 'w({kind:"waiting_server_next",label:"等待响应"})'],
+  ['case"summaryStarted":case"summary":return{kind:"summarizing",label:"Summarizing"}', 'case"summaryStarted":case"summary":return{kind:"summarizing",label:"正在总结"}'],
+  ['label:"Generating response"', 'label:"正在生成回复"'],
+  ['case"summaryStarted":case"summary":return"Summarizing"', 'case"summaryStarted":case"summary":return"正在总结"'],
   ['label:"Copy prompt"', 'label:"复制提示词"'],
   ['title:"Open in Prompt Quality"', 'title:"在 Prompt Quality 中打开"'],
   ['label:"Show History",tooltip:"Show History"', 'label:"显示历史",tooltip:"显示历史"'],
@@ -1223,6 +1297,19 @@ const replacements = [
   ['message:"Switching modes is currently limited in this conversation. Would you like to start a new chat?"', 'message:"当前对话暂时不能切换模式。要新建一个聊天吗？"'],
   ['primaryButton:{id:"new-chat",label:"Start New Chat"}', 'primaryButton:{id:"new-chat",label:"新建聊天"}'],
   ['case"restricted-conversation":return"Switching modes is currently limited in this conversation";case"background-conversation":return"Switching modes is unavailable in background conversations";case"background-agent-conversation":return"Switching modes is unavailable in conversations created from a background agent";case"plan-execution":return"Mode used to build this plan"', 'case"restricted-conversation":return"当前对话暂时不能切换模式";case"background-conversation":return"后台对话不可切换模式";case"background-agent-conversation":return"由后台智能体创建的对话不可切换模式";case"plan-execution":return"用于构建此计划的模式"'],
+  ['var Jax={agent:"Agent",chat:"Chat",background:"Cloud",plan:"Plan",spec:"Spec",debug:"Debug",triage:"Triage"};function Gax(n){return Jax[n]||n}', 'var Jax={agent:"智能体",chat:"对话",background:"云端",plan:"计划",spec:"规格",debug:"调试",triage:"分诊"};function Gax(n){return Jax[n]||n}'],
+  ['Fax=wt("<div><div><span></span><span><span> Mode")', 'Fax=wt("<div><div><span></span><span><span>模式")'],
+  ['K=Xe(()=>N()?"Skipped switch to":O()?"Switched to":"")', 'K=Xe(()=>N()?"已跳过切换到":O()?"已切换到":"")'],
+  ['Q=Xe(()=>{const _e=P();return n.data.additionalData?.skipReason==="timeout"?`The agent\'s request to switch to ${_e} Mode timed out without a response`:`The agent requested to switch to ${_e} Mode, but it was skipped by the user`})', 'Q=Xe(()=>{const _e=P(),le=`${_e}模式`;return n.data.additionalData?.skipReason==="timeout"?`智能体请求切换到${le}，但等待超时未收到回应`:`智能体请求切换到${le}，但已被跳过`})'],
+  ['te=_e=>{switch(_e){case"alwaysAsk":return"Always ask";case"alwaysRun":return"Always run";default:return _e}}', 'te=_e=>{switch(_e){case"alwaysAsk":return"总是询问";case"alwaysRun":return"总是允许";default:return _e}}'],
+  ['{id:"always-ask",title:"Always ask",textColor:"var(--cursor-text-secondary)",showType:r()==="alwaysAsk"?"check":void 0', '{id:"always-ask",title:"总是询问",textColor:"var(--cursor-text-secondary)",showType:r()==="alwaysAsk"?"check":void 0'],
+  ['{id:"always-run",title:"Always run",textColor:"var(--cursor-text-secondary)",showType:r()==="alwaysRun"?"check":void 0', '{id:"always-run",title:"总是允许",textColor:"var(--cursor-text-secondary)",showType:r()==="alwaysRun"?"check":void 0'],
+  ['Pe(Ce,he(Nt,{get when(){return K()},get children(){return[ss(()=>K())," "]}}),be)', 'Pe(Ce,he(Nt,{get when(){return K()},get children(){return[ss(()=>K()),""]}}),be)'],
+  ['content:"Configure how to handle this mode switch in the future"', 'content:"配置以后如何处理这类模式切换"'],
+  ['content:`Skip (${Ja?"\\u21E7\\u2318\\u232B":"Shift+Ctrl+Backspace"})`', 'content:`跳过 (${Ja?"\\u21E7\\u2318\\u232B":"Shift+Ctrl+Backspace"})`'],
+  ['variant:"text",onClick:()=>ce(!1),style:{"padding-right":0},children:"Skip"', 'variant:"text",onClick:()=>ce(!1),style:{"padding-right":0},children:"跳过"'],
+  ['content:`Switch (${HoS("\\u23CE")})`', 'content:`切换 (${HoS("\\u23CE")})`'],
+  ['children:"Switch"})),Ce}}),null),_e}})', 'children:"切换"})),Ce}}),null),_e}})'],
   ['title:"Conversation Corrupted",message:"This conversation has corrupted data. You can view and export it, but new messages cannot be sent. Please start a new conversation to continue."', 'title:"对话数据损坏",message:"这个对话的数据已损坏。你仍可以查看和导出，但不能发送新消息。请新建一个对话继续。"'],
   ['label:"Start New Chat",variant:"primary"', 'label:"新建聊天",variant:"primary"'],
   ['currentLabel:"Run History"', 'currentLabel:"运行历史"'],
@@ -1243,6 +1330,11 @@ const replacements = [
   ['Start new thread with summary', '带摘要开启新线程'],
   ['<div class=hover-opacity><div></div>Resume', '<div class=hover-opacity><div></div>继续'],
   ['<div class=hover-opacity><div></div>Try again', '<div class=hover-opacity><div></div>重试'],
+  ['Le(dt()?"Copied!":`Copy Request (${vt})`', 'Le(dt()?"已复制！":`复制请求（${vt}）`'],
+  ['Yt=`Request ID: ${xt}${Ut?`\\n`+JSON.stringify(Ut):""}\\n${i?.()||t?.()||""}`', 'Yt=`请求 ID：${xt}${Ut?`\\n`+JSON.stringify(Ut):""}\\n${i?.()||t?.()||""}`'],
+  ['{title:r,retryable:s,showRequestId:o,detail:a,buttons:u,children:d,allowCommandLinksPotentiallyUnsafe:h}=Ojs({error:()=>n.error,connectCode:()=>n.connectCode}),p=Xe(()=>n.error?.error===ym.CONVERSATION_TOO_LONG);', '{title:r,retryable:s,showRequestId:o,detail:a,buttons:u,children:d,allowCommandLinksPotentiallyUnsafe:h}=Ojs({error:()=>n.error,connectCode:()=>n.connectCode}),__cursorLocalizeErrorText=D=>typeof D=="string"?D.replace(/^LLM provider error$/,"模型服务商错误").replace(/^OpenAI Responses API failed: Your input exceeds the context window of this model\\. Please adjust your input and try again\\.$/,"OpenAI Responses API 请求失败：你的输入超过了此模型的上下文窗口。请缩短输入后重试。"):D,p=Xe(()=>n.error?.error===ym.CONVERSATION_TOO_LONG);'],
+  ['Pe(N,r),D}}),w)', 'Pe(N,()=>__cursorLocalizeErrorText(r())),D}}),w)'],
+  ['get rawText(){return a()}', 'get rawText(){return __cursorLocalizeErrorText(a())}'],
   ['title:d()?"Copied!":"Copy Message"', 'title:d()?"已复制！":"复制消息"'],
   ['Tb({id:"composer.standalone.copyRequestId",label:"Copy Request ID"', 'Tb({id:"composer.standalone.copyRequestId",label:"复制请求 ID"'],
   ['Tb({id:v2r,label:"Copy Request ID"', 'Tb({id:v2r,label:"复制请求 ID"'],
@@ -1304,6 +1396,9 @@ const replacements = [
   ['label:"Cancel",description:"Cancel the checkout operation"', 'label:"取消",description:"取消检出操作"'],
   ['label:"Stash Changes",description:"Save changes to a stash and restore them later",id:"stash"', 'label:"暂存更改",description:"把更改保存到暂存区，稍后可恢复",id:"stash"'],
   ['label:"Commit Changes",description:"Create a checkpoint commit with your current changes",id:"commit"', 'label:"提交更改",description:"用当前更改创建一个检查点提交",id:"commit"'],
+  ['loadingVerb:"Redo checkpoint",completedVerb:"Redo checkpoint"', 'loadingVerb:"正在恢复检查点",completedVerb:"恢复检查点"'],
+  ['hintText:"Restore edits to the latest checkpoint"', 'hintText:"恢复到最新检查点"'],
+  ['"Restore Checkpoint"', '"恢复检查点"'],
   ['label:"Discard Changes",description:"Permanently discard your current changes before switching branches",id:"discard"', 'label:"丢弃更改",description:"切换分支前永久丢弃当前更改",id:"discard"'],
   ['placeHolder:`Local changes detected before checking out ${zi}.`', 'placeHolder:`检出 ${zi} 前检测到本地更改。`'],
   ['placeHolder:`Local changes detected before checking out ${s}.`', 'placeHolder:`检出 ${s} 前检测到本地更改。`'],
@@ -1428,6 +1523,14 @@ const replacements = [
   ['children:"Add Skills"', 'children:"添加技能"'],
   ['children:"No skills available"', 'children:"没有可用技能"'],
   ['children:"Loading skills..."', 'children:"正在加载技能..."'],
+  ['y2p={skill:"Skills",command:"Commands",mode:"Modes",subagent:"Subagents",action:"Actions",mention:"Mentions",heading:"Other",divider:"Other"}', 'y2p={skill:"技能",command:"命令",mode:"模式",subagent:"子智能体",action:"操作",mention:"引用",heading:"其他",divider:"其他"}'],
+  ['function WFd(n){switch(n){case"skill":return"Skill";case"command":return"Command";case"mode":return"Mode";case"subagent":return"Subagent";case"action":case"mention":return"";case"heading":case"divider":return"";default:{const e=n;throw new Error(`Unhandled item type: ${e}`)}}}', 'function WFd(n){switch(n){case"skill":return"技能";case"command":return"命令";case"mode":return"模式";case"subagent":return"子智能体";case"action":case"mention":return"";case"heading":case"divider":return"";default:{const e=n;throw new Error(`Unhandled item type: ${e}`)}}}'],
+  ['children:["Show ",w.items.length-P," more"]', 'children:["再显示 ",w.items.length-P," 个"]'],
+  ['children:["Show ",T.items.length-D," more"]', 'children:["再显示 ",T.items.length-D," 个"]'],
+  ['djb=[{id:"files-and-folders",label:"Files & Folders",mode:"files_and_folders",iconName:"folder"},{id:"past-chats",label:"Past Chats",mode:"past_chats",iconName:"comment"}]', 'djb=[{id:"files-and-folders",label:"文件和文件夹",mode:"files_and_folders",iconName:"folder"},{id:"past-chats",label:"历史聊天",mode:"past_chats",iconName:"comment"}]'],
+  ['roE=[{id:"files-and-folders",label:"Files & Folders",mode:"files_and_folders",iconName:"folder"},{id:"past-chats",label:"Past Chats",mode:"past_chats",iconName:"comment"}]', 'roE=[{id:"files-and-folders",label:"文件和文件夹",mode:"files_and_folders",iconName:"folder"},{id:"past-chats",label:"历史聊天",mode:"past_chats",iconName:"comment"}]'],
+  ['case"all":return"Mentions";case"files_and_folders":return"Files & Folders";case"docs":return"Docs";case"terminals":return"Terminals";case"past_chats":return"Past Chats";case"branch_diff_main":return"Branch (Diff with Main)";case"browser":return"Browser"', 'case"all":return"引用";case"files_and_folders":return"文件和文件夹";case"docs":return"文档";case"terminals":return"终端";case"past_chats":return"历史聊天";case"branch_diff_main":return"当前分支变更";case"browser":return"浏览器"'],
+  ['case"all":return"Mentions";case"files_and_folders":return"文件和文件夹";case"docs":return"Docs";case"terminals":return"终端";case"past_chats":return"历史聊天";case"branch_diff_main":return"Branch (Diff with Main)";case"browser":return"Browser"', 'case"all":return"引用";case"files_and_folders":return"文件和文件夹";case"docs":return"文档";case"terminals":return"终端";case"past_chats":return"历史聊天";case"branch_diff_main":return"当前分支变更";case"browser":return"浏览器"'],
   ['{id:"always",label:"Always applied"}', '{id:"always",label:"始终应用"}'],
   ['{id:"agent",label:"Agent decides when to apply"}', '{id:"agent",label:"由智能体决定何时应用"}'],
   ['{id:"glob",label:"Apply to Specific Files & Folders"}', '{id:"glob",label:"应用到指定文件和文件夹"}'],
@@ -1781,6 +1884,7 @@ const replacements = [
   ['title:"About Cursor"', 'title:"关于 Cursor"'],
   ['children:"Add a to-do to get started"', 'children:"添加一个待办事项开始"'],
   ['children:"Add an agent to get started"', 'children:"添加一个智能体开始"'],
+  ['t?"Completed task":"Incomplete task"', 't?"已完成任务":"未完成任务"'],
   ['title:"Add skills, MCPs and more"', 'title:"添加技能、MCP 等"'],
   ['children:"All files and folders"', 'children:"所有文件和文件夹"'],
   ['children:"An error occurred while processing your request."', 'children:"处理请求时发生错误。"'],
@@ -1793,6 +1897,20 @@ const replacements = [
   ['children:"Ask Agent"', 'children:"询问智能体"'],
   ['children:i?"Hide Details":"Show Details"', 'children:i?"隐藏详情":"显示详情"'],
   ['children:o?"Hide Details":"Show Details"', 'children:o?"隐藏详情":"显示详情"'],
+  ['Atx=wt("<span>Asking questions")', 'Atx=wt("<span>正在提问")'],
+  ['Itx=wt("<span>Asked <!> question")', 'Itx=wt("<span>已提出 <!> 个问题")'],
+  ['Rtx=wt("<span>Questions skipped")', 'Rtx=wt("<span>已跳过问题")'],
+  ['Ptx=wt(\'<div class=user-questionnaire-answer-item><div class=user-questionnaire-question-text></div><div class="user-questionnaire-answer-text user-questionnaire-answer-skipped">Skipped\')', 'Ptx=wt(\'<div class=user-questionnaire-answer-item><div class=user-questionnaire-question-text></div><div class="user-questionnaire-answer-text user-questionnaire-answer-skipped">已跳过\')'],
+  ['Q().length===1?"Answer":"Answers"', 'Q().length===1?"回答":"回答"'],
+  ['const ce=w().length,me=ce===1?"question":"questions";return n.data.additionalData?.skipReason==="timeout"?`The agent asked ${ce} ${me} that timed out without a response`:`The agent tried to ask ${ce} ${me}, but they were skipped by the user`', 'const ce=w().length;return n.data.additionalData?.skipReason==="timeout"?`智能体提出了 ${ce} 个问题，但等待超时未收到回答`:`智能体尝试提出 ${ce} 个问题，但被用户跳过`'],
+  ['Pe(me,()=>w().length!==1?"s":"",null)', 'Pe(me,"",null)'],
+  ['V(_ce,{label:"Questions",showStepper:gt,stepperDirection:"horizontal"})', 'V(_ce,{label:"问题",showStepper:gt,stepperDirection:"horizontal"})'],
+  ['Pmx=wt("<span>Continue")', 'Pmx=wt("<span>继续")'],
+  ['<span class=composer-questionnaire-toolbar-title>Questions</span>', '<span class=composer-questionnaire-toolbar-title>问题</span>'],
+  ['placeholder=Other... rows=1', 'placeholder=其他... rows=1'],
+  ['ut=V($c,{onClick:u,children:"Skip"})', 'ut=V($c,{onClick:u,children:"跳过"})'],
+  ['const dt=Z&&!te?"Next":"Continue";', 'const dt=Z&&!te?"下一步":"继续";'],
+  ['Pe(Ye,he(sl,{variant:"text",onClick:De,class:"composer-skip-button",keybinding:"Esc",style:{"padding-right":0},children:"Skip"}),null)', 'Pe(Ye,he(sl,{variant:"text",onClick:De,class:"composer-skip-button",keybinding:"Esc",style:{"padding-right":0},children:"跳过"}),null)'],
   ['title:ln(8589,"Build Plan")', 'title:ln(8589,"构建计划")'],
   ['title:"Build Plan"', 'title:"构建计划"'],
   ['"Build Plan in Parallel"', '"并行构建计划"'],
@@ -1912,6 +2030,17 @@ const replacements = [
   ['children:"Couldn\'t load self-hosted pools. Close and reopen this menu to retry."', 'children:"无法加载自托管池。请关闭并重新打开此菜单后重试。"'],
   ['children:["No self-hosted pool workers found. Run"," ",V("code",{className:"automations-pw-code",children:"cursor worker --pool"})," on a machine to register one."]', 'children:["没有找到自托管池 worker。请在一台机器上运行"," ",V("code",{className:"automations-pw-code",children:"cursor worker --pool"})," 来注册。"]'],
   ['children:["No self-hosted pool workers found. Run ",V("code",{children:"cursor worker --pool"})," ","on a machine to register one."]', 'children:["没有找到自托管池 worker。请在一台机器上运行 ",V("code",{children:"cursor worker --pool"})," ","来注册。"]'],
+  ['function Pux(n){return`Canvas: ${b5i(n.path)}`}', 'function Pux(n){return`画布：${b5i(n.path)}`}'],
+  ['class=canvas-mention-card__label>New Canvas</span>', 'class=canvas-mention-card__label>新建画布</span>'],
+  ['hintText:"Open or refocus the canvas tab",children:"Open"', 'hintText:"打开或重新聚焦画布标签页",children:"打开"'],
+  ['children:h?`Canvases in ${h}`:"Canvases"', 'children:h?`${h} 中的画布`:"画布"'],
+  ['children:g?`Canvases in ${g}`:"Canvases"', 'children:g?`${g} 中的画布`:"画布"'],
+  ['children:"No canvases found"', 'children:"没有找到画布"'],
+  ['`Delete ${g.name}`', '`删除 ${g.name}`'],
+  ['class:"composer-async-subagent-response-card__open-hint",onClick:s,tabFocusable:!0,children:"Open"', 'class:"composer-async-subagent-response-card__open-hint",onClick:s,tabFocusable:!0,children:"打开"'],
+  ['description:"Create your own themes, tweak the vibe, and import your favorites",label:"Manage Themes",children:V($c,{onClick:g,size:"md",variant:"outline",children:"Open"})', 'description:"创建自己的主题、调整观感，并导入你喜欢的主题",label:"管理主题",children:V($c,{onClick:g,size:"md",variant:"outline",children:"打开"})'],
+  ['"aria-label":`Open ${qe} in Agents tray`,className:"agent-panel-meta-agent-chat__subagent-open-pill"', '"aria-label":`在智能体托盘中打开 ${qe}`,className:"agent-panel-meta-agent-chat__subagent-open-pill"'],
+  ['className:"agent-panel-meta-agent-chat__subagent-open-pill",onClick:ze=>{ze.preventDefault(),ze.stopPropagation(),i({composerId:Oe,name:qe})},type:"button",children:"Open"', 'className:"agent-panel-meta-agent-chat__subagent-open-pill",onClick:ze=>{ze.preventDefault(),ze.stopPropagation(),i({composerId:Oe,name:qe})},type:"button",children:"打开"'],
   ['children:"Create new canvas"', 'children:"新建画布"'],
   ['children:"Featured Canvas Skills from Marketplace"', 'children:"扩展市场精选画布技能"'],
   ['children:"Diff content not available"', 'children:"差异内容不可用"'],
@@ -1956,7 +2085,10 @@ const replacements = [
   ['title:{value:"Accept & Run Generated Command",original:"Accept & Run Generated Command"}', 'title:{value:"接受并运行生成的命令",original:"Accept & Run Generated Command"}'],
   ['title:{value:"Reject Generated Command",original:"Reject Generated Command"}', 'title:{value:"拒绝生成的命令",original:"Reject Generated Command"}'],
   ['V(Pie,{action:"Generating command",loading:!0})', 'V(Pie,{action:"正在生成命令",loading:!0})'],
+  ['function n8k(n,e){return e==="aborted"||n==="cancelled"?"Stopped":n==="skipped"?"Skipped":n==="rejected"?"Rejected":"Completed"}', 'function n8k(n,e){return e==="aborted"||n==="cancelled"?"已停止":n==="skipped"?"已跳过":n==="rejected"?"已拒绝":"已完成"}'],
+  ['r==="Completed"?n?.currentStep:void 0', 'r==="已完成"?n?.currentStep:void 0'],
   ['return e?"Generating":gcp(n)?"Error":"Completed"', 'return e?"正在生成":gcp(n)?"错误":"已完成"'],
+  ['return ee()||ce()?"Generating":"Completed"', 'return ee()||ce()?"正在生成":"已完成"'],
   ['Ce===0?(ce="No linter errors",me=void 0,pe=!0):(ce="Found",me=`${Ce} error${Ce===1?"":"s"}`)', 'Ce===0?(ce="没有代码检查错误",me=void 0,pe=!0):(ce="发现",me=`${Ce} 个错误`)'],
   ['title:{value:"Generate Commit Message",original:"Generate Commit Message"}', 'title:{value:"生成提交信息",original:"Generate Commit Message"}'],
   ['const ot=p.statistics.files,pt=ot===1?"1 File":`${ot} Files`', 'const ot=p.statistics.files,pt=`${ot} 个文件`'],
@@ -1968,8 +2100,12 @@ const replacements = [
   ['amy={none:"None",applying:"Applying",generating:"Generating",apply_pending:"Waiting to be applied",cancelled:"Cancelled",completed:"Completed",accepted:"Accepted",rejected:"Rejected",aborted:"Aborted",outdated:"Outdated"}', 'amy={none:"无",applying:"正在应用",generating:"正在生成",apply_pending:"等待应用",cancelled:"已取消",completed:"已完成",accepted:"已接受",rejected:"已拒绝",aborted:"已中止",outdated:"已过期"}'],
 
   // Model picker parameter UI.
-  ['const o=s,a=t.markdownTooltip,u=t.name;let d;', 'const o=s,a=t.id==="reasoning"?"控制模型使用多少思考强度。":t.markdownTooltip,u=t.id==="reasoning"?"思考强度":t.name,l=b=>{if(t.id!=="reasoning")return b.displayName??b.value;switch((b.value??b.displayName)?.toLowerCase()){case"none":return"None";case"minimal":return"Minimal";case"low":return"Low";case"medium":return"Medium";case"high":return"High";case"xhigh":case"extra high":return"Extra High";default:return b.displayName??b.value}};let d;'],
-  ['const o=s,a=t.id==="reasoning"?"控制模型使用多少思考强度。":t.markdownTooltip,u=t.id==="reasoning"?"思考强度":t.name,l=b=>{if(t.id!=="reasoning")return b.displayName??b.value;switch((b.value??b.displayName)?.toLowerCase()){case"none":return"无";case"minimal":return"最低";case"low":return"低";case"medium":return"中";case"high":return"高";case"xhigh":case"extra high":return"Extra High";default:return b.displayName??b.value}};let d;', 'const o=s,a=t.id==="reasoning"?"控制模型使用多少思考强度。":t.markdownTooltip,u=t.id==="reasoning"?"思考强度":t.name,l=b=>{if(t.id!=="reasoning")return b.displayName??b.value;switch((b.value??b.displayName)?.toLowerCase()){case"none":return"None";case"minimal":return"Minimal";case"low":return"Low";case"medium":return"Medium";case"high":return"High";case"xhigh":case"extra high":return"Extra High";default:return b.displayName??b.value}};let d;'],
+  ['const e=gn(10),{parameter:t,currentValue:i,onValueChange:r}=n,s=i==="true",o=t.markdownTooltip;let a;', 'const e=gn(10),{parameter:t,currentValue:i,onValueChange:r}=n,s=i==="true",m=F=>F==="thinking"?"扩展思考":F==="reasoning"?"思考强度":F==="effort"?"思考强度":F==="context"?"上下文":void 0,v=(F,z)=>F==="thinking"?"启用扩展思考，用于复杂推理。":F==="reasoning"?"控制模型使用多少思考强度。":F==="effort"?"选择模型的思考强度。":F==="context"?"最大上下文窗口大小。":z,o=v(t.id,t.markdownTooltip),c=m(t.id)??t.name;let a;'],
+  ['e[5]!==s||e[6]!==t.name||e[7]!==a||e[8]!==u?(d=V(rs.ToggleItem,{checked:s,onChange:a,label:t.name,tooltip:u,children:t.name}),e[5]=s,e[6]=t.name,e[7]=a,e[8]=u,e[9]=d):d=e[9],d}', 'e[5]!==s||e[6]!==c||e[7]!==a||e[8]!==u?(d=V(rs.ToggleItem,{checked:s,onChange:a,label:c,tooltip:u,children:c}),e[5]=s,e[6]=c,e[7]=a,e[8]=u,e[9]=d):d=e[9],d}'],
+  ['e[5]!==s||e[6]!==t.name||e[7]!==a||e[8]!==u?(d=V(Ia.ToggleItem,{checked:s,onChange:a,label:t.name,tooltip:u,children:t.name}),e[5]=s,e[6]=t.name,e[7]=a,e[8]=u,e[9]=d):d=e[9],d}', 'e[5]!==s||e[6]!==c||e[7]!==a||e[8]!==u?(d=V(Ia.ToggleItem,{checked:s,onChange:a,label:c,tooltip:u,children:c}),e[5]=s,e[6]=c,e[7]=a,e[8]=u,e[9]=d):d=e[9],d}'],
+  ['const o=s,a=t.markdownTooltip,u=t.name;let d;', 'const o=s,m=y=>y==="reasoning"?"思考强度":y==="thinking"?"扩展思考":y==="effort"?"思考强度":y==="context"?"上下文":void 0,v=(y,F)=>y==="reasoning"?"控制模型使用多少思考强度。":y==="thinking"?"启用扩展思考，用于复杂推理。":y==="effort"?"选择模型的思考强度。":y==="context"?"最大上下文窗口大小。":F,a=v(t.id,t.markdownTooltip),u=m(t.id)??t.name,l=b=>{const y=(b.value??b.displayName)?.toLowerCase();if(t.id==="reasoning"||t.id==="effort"){switch(y){case"none":return"None";case"minimal":return"Minimal";case"low":return"Low";case"medium":return"Medium";case"high":return"High";case"xhigh":case"extra high":return"Extra High";case"max":return"Max";default:return b.displayName??b.value}}return b.displayName??b.value};let d;'],
+  ['const o=s,a=t.id==="reasoning"?"控制模型使用多少思考强度。":t.markdownTooltip,u=t.id==="reasoning"?"思考强度":t.name,l=b=>{if(t.id!=="reasoning")return b.displayName??b.value;switch((b.value??b.displayName)?.toLowerCase()){case"none":return"无";case"minimal":return"最低";case"low":return"低";case"medium":return"中";case"high":return"高";case"xhigh":case"extra high":return"Extra High";default:return b.displayName??b.value}};let d;', 'const o=s,m=y=>y==="reasoning"?"思考强度":y==="thinking"?"扩展思考":y==="effort"?"思考强度":y==="context"?"上下文":void 0,v=(y,F)=>y==="reasoning"?"控制模型使用多少思考强度。":y==="thinking"?"启用扩展思考，用于复杂推理。":y==="effort"?"选择模型的思考强度。":y==="context"?"最大上下文窗口大小。":F,a=v(t.id,t.markdownTooltip),u=m(t.id)??t.name,l=b=>{const y=(b.value??b.displayName)?.toLowerCase();if(t.id==="reasoning"||t.id==="effort"){switch(y){case"none":return"None";case"minimal":return"Minimal";case"low":return"Low";case"medium":return"Medium";case"high":return"High";case"xhigh":case"extra high":return"Extra High";case"max":return"Max";default:return b.displayName??b.value}}return b.displayName??b.value};let d;'],
+  ['const o=s,a=t.id==="reasoning"?"控制模型使用多少思考强度。":t.markdownTooltip,u=t.id==="reasoning"?"思考强度":t.name,l=b=>{if(t.id!=="reasoning")return b.displayName??b.value;switch((b.value??b.displayName)?.toLowerCase()){case"none":return"None";case"minimal":return"Minimal";case"low":return"Low";case"medium":return"Medium";case"high":return"High";case"xhigh":case"extra high":return"Extra High";default:return b.displayName??b.value}};let d;', 'const o=s,m=y=>y==="reasoning"?"思考强度":y==="thinking"?"扩展思考":y==="effort"?"思考强度":y==="context"?"上下文":void 0,v=(y,F)=>y==="reasoning"?"控制模型使用多少思考强度。":y==="thinking"?"启用扩展思考，用于复杂推理。":y==="effort"?"选择模型的思考强度。":y==="context"?"最大上下文窗口大小。":F,a=v(t.id,t.markdownTooltip),u=m(t.id)??t.name,l=b=>{const y=(b.value??b.displayName)?.toLowerCase();if(t.id==="reasoning"||t.id==="effort"){switch(y){case"none":return"None";case"minimal":return"Minimal";case"low":return"Low";case"medium":return"Medium";case"high":return"High";case"xhigh":case"extra high":return"Extra High";case"max":return"Max";default:return b.displayName??b.value}}return b.displayName??b.value};let d;'],
   ['children:b.displayName??b.value},b.value),"t5")', 'children:l(b)},b.value),"t5")'],
   ['V($c,{variant:"text",size:"xs",className:"ui-model-picker__edit-btn","data-testid":"parameter-edit-btn",...a,onClick:u,children:"Edit"})', 'V($c,{variant:"text",size:"xs",className:"ui-model-picker__edit-btn","data-testid":"parameter-edit-btn",...a,onClick:u,children:"编辑"})'],
   ['V(XD,{variant:"text",size:"xs",className:"ui-model-picker__edit-btn","data-testid":"parameter-edit-btn",...a,onClick:u,children:"Edit"})', 'V(XD,{variant:"text",size:"xs",className:"ui-model-picker__edit-btn","data-testid":"parameter-edit-btn",...a,onClick:u,children:"编辑"})'],
@@ -2078,7 +2214,17 @@ const workbenchFunctionReplacements = [
   },
 ];
 
+const shellDescriptionLocalizerSource = 'function __cursorLocalizeShellDescription(Ib){if(typeof Ib!="string")return Ib;const B0={"Run frontend streaming discussion tests":"运行前端流式讨论测试","Run backend discussion unit tests":"运行后端讨论单元测试","Run frontend type checks":"运行前端类型检查","Check system pytest availability":"检查系统 pytest 是否可用","Check uv availability":"检查 uv 是否可用"};if(B0[Ib])return B0[Ib];const uT=jk=>{let Vk=jk.replace(/\\bfrontend\\b/gi,"前端").replace(/\\bbackend\\b/gi,"后端").replace(/\\bsystem\\b/gi,"系统").replace(/\\bstreaming\\b/gi,"流式").replace(/\\bdiscussion\\b/gi,"讨论").replace(/\\bunit\\b/gi,"单元").replace(/\\btype\\b/gi,"类型").replace(/\\bchecks?\\b/gi,"检查").replace(/\\btests?\\b/gi,"测试");for(let Kx=0;Kx<3;Kx++)Vk=Vk.replace(/([\\u4e00-\\u9fff])\\s+([\\u4e00-\\u9fff])/g,"$1$2");return Vk};let DI=Ib.trim();let BT=DI.match(/^Run (.+?) unit tests?$/i);if(BT)return`运行${uT(BT[1])}单元测试`;if(BT=DI.match(/^Run (.+?) type checks?$/i))return`运行${uT(BT[1])}类型检查`;if(BT=DI.match(/^Run (.+?) tests?$/i))return`运行${uT(BT[1])}测试`;if(BT=DI.match(/^Check (.+?) availability$/i))return`检查 ${uT(BT[1])} 是否可用`.replace(" 系统 pytest ","系统 pytest ");return uT(Ib)}';
+const composerStatusLocalizerSource = 'function __cursorLocalizeComposerStatusText(n){if(typeof n!="string")return n;const e=n.trim(),t={"Chat context summarized.":"上下文已压缩","Chat context summarized":"上下文已压缩","Summarizing chat context.":"正在压缩上下文","Summarizing chat context":"正在压缩上下文","Chat context compacted.":"上下文已压缩","Chat context compacted":"上下文已压缩","Compacting chat context.":"正在压缩上下文","Compacting chat context":"正在压缩上下文","Context summarized.":"上下文已压缩","Context summarized":"上下文已压缩","Summarized context.":"上下文已压缩","Summarized context":"上下文已压缩","Summarized chat context.":"上下文已压缩","Summarized chat context":"上下文已压缩","Context compacted.":"上下文已压缩","Context compacted":"上下文已压缩","Compressing context.":"正在压缩上下文","Compressing context":"正在压缩上下文","Compacting context.":"正在压缩上下文","Compacting context":"正在压缩上下文"};return t[e]??n}';
+
 const workbenchTargetedReplacements = [
+  ['var Vex=Hx(Pie),Kex=n=>{const e=ko(),{composerDataService:t}=e,{composerDataHandle:i}=Dte(()=>n.composerDataHandle),r=Xe(()=>(t.getComposerData(i())?.generatingBubbleIds??[]).includes(n.bubbleId)),s=Xe(()=>e.serverConfigService.cachedServerConfig.chatConfig?.summarizationMessage||"上下文已压缩"),o=Xe(()=>r());return he(Vex,{get action(){return ss(()=>!!o())()?"正在压缩上下文":s()},get loading(){return o()}})}', `var Vex=Hx(Pie),__cursorLocalizeComposerStatusText=n=>{if(typeof n!="string")return n;const e=n.trim(),t={"Chat context summarized.":"上下文已压缩","Chat context summarized":"上下文已压缩","Summarizing chat context.":"正在压缩上下文","Summarizing chat context":"正在压缩上下文","Chat context compacted.":"上下文已压缩","Chat context compacted":"上下文已压缩","Compacting chat context.":"正在压缩上下文","Compacting chat context":"正在压缩上下文","Context summarized.":"上下文已压缩","Context summarized":"上下文已压缩","Summarized context.":"上下文已压缩","Summarized context":"上下文已压缩","Summarized chat context.":"上下文已压缩","Summarized chat context":"上下文已压缩","Context compacted.":"上下文已压缩","Context compacted":"上下文已压缩","Compressing context.":"正在压缩上下文","Compressing context":"正在压缩上下文","Compacting context.":"正在压缩上下文","Compacting context":"正在压缩上下文"};return t[e]??n},Kex=n=>{const e=ko(),{composerDataService:t}=e,{composerDataHandle:i}=Dte(()=>n.composerDataHandle),r=Xe(()=>(t.getComposerData(i())?.generatingBubbleIds??[]).includes(n.bubbleId)),s=Xe(()=>__cursorLocalizeComposerStatusText(e.serverConfigService.cachedServerConfig.chatConfig?.summarizationMessage||"上下文已压缩")),o=Xe(()=>r());return he(Vex,{get action(){return ss(()=>!!o())()?"正在压缩上下文":s()},get loading(){return o()}})}`],
+  ['var Vex=Hx(Pie),Kex=n=>{const e=ko(),{composerDataService:t}=e,{composerDataHandle:i}=Dte(()=>n.composerDataHandle),r=Xe(()=>(t.getComposerData(i())?.generatingBubbleIds??[]).includes(n.bubbleId)),s=Xe(()=>e.serverConfigService.cachedServerConfig.chatConfig?.summarizationMessage||"聊天上下文已总结"),o=Xe(()=>r());return he(Vex,{get action(){return ss(()=>!!o())()?"正在总结聊天上下文":s()},get loading(){return o()}})}', `var Vex=Hx(Pie),__cursorLocalizeComposerStatusText=n=>{if(typeof n!="string")return n;const e=n.trim(),t={"Chat context summarized.":"上下文已压缩","Chat context summarized":"上下文已压缩","Summarizing chat context.":"正在压缩上下文","Summarizing chat context":"正在压缩上下文","Chat context compacted.":"上下文已压缩","Chat context compacted":"上下文已压缩","Compacting chat context.":"正在压缩上下文","Compacting chat context":"正在压缩上下文","Context summarized.":"上下文已压缩","Context summarized":"上下文已压缩","Summarized context.":"上下文已压缩","Summarized context":"上下文已压缩","Summarized chat context.":"上下文已压缩","Summarized chat context":"上下文已压缩","Context compacted.":"上下文已压缩","Context compacted":"上下文已压缩","Compressing context.":"正在压缩上下文","Compressing context":"正在压缩上下文","Compacting context.":"正在压缩上下文","Compacting context":"正在压缩上下文"};return t[e]??n},Kex=n=>{const e=ko(),{composerDataService:t}=e,{composerDataHandle:i}=Dte(()=>n.composerDataHandle),r=Xe(()=>(t.getComposerData(i())?.generatingBubbleIds??[]).includes(n.bubbleId)),s=Xe(()=>__cursorLocalizeComposerStatusText(e.serverConfigService.cachedServerConfig.chatConfig?.summarizationMessage||"上下文已压缩")),o=Xe(()=>r());return he(Vex,{get action(){return ss(()=>!!o())()?"正在压缩上下文":s()},get loading(){return o()}})}`],
+  ['t$d="Run in background",YPp="Agent is waiting for a command to finish.",QPp="Agent is waiting for commands to finish."', 't$d="后台运行",YPp="智能体正在等待一个命令完成。",QPp="智能体正在等待多个命令完成。"'],
+  ['Vcx=wt(\'<div class="ui-tool-call-line composer-foreground-shell-background-nudge-line"><span class=ui-tool-call-line-action>Waiting for <!> command<!> to finish</span><button type=button class=ui-tool-call-line-details-button>Run in background\')', 'Vcx=wt(\'<div class="ui-tool-call-line composer-foreground-shell-background-nudge-line"><span class=ui-tool-call-line-action>正在等待 <!> 个命令<!>完成</span><button type=button class=ui-tool-call-line-details-button>后台运行\')'],
+  ['Pe(g,()=>u()===1?"":"s",T)', 'Pe(g,"",T)'],
+  ['return{loadingAction:"Running",completedAction:"Ran",completedDetails:`${s} 条命令`,isHeaderOnly:!1,expandable:!0}', 'return{loadingAction:"正在运行",completedAction:"已运行",completedDetails:`${s} 条命令`,isHeaderOnly:!1,expandable:!0}'],
+  ['return e.length>0&&e.every(nWv)&&i===void 0?{loadingAction:"Deleting",completedAction:"Delete",completedDetails:"attempted",isHeaderOnly:!1,expandable:!0}:{loadingAction:i?.loadingAction??"正在查看",completedAction:i?.completedAction??"已查看",...rWv(n.summary,i?.fileCount),isHeaderOnly:!1,expandable:!0}', 'return e.length>0&&e.every(nWv)&&i===void 0?{loadingAction:e.every(r=>r.step.toolCall.tool.case==="deleteToolCall")?"正在删除":"正在更改",completedAction:e.every(r=>r.step.toolCall.tool.case==="deleteToolCall")?"尝试删除":e.every(r=>r.step.toolCall.tool.case==="editToolCall")?"尝试编辑":"尝试更改",completedDetails:void 0,isHeaderOnly:!1,expandable:!0}:{loadingAction:i?.loadingAction??"正在查看",completedAction:i?.completedAction??"已查看",...rWv(n.summary,i?.fileCount),isHeaderOnly:!1,expandable:!0}'],
   ['case Wn.TASK:case Wn.AWAIT_TASK:return["Working on task","Completed task","Work on task attempted"];case Wn.TASK_V2:return["Working on task","Completed task","Work on task attempted"]', 'case Wn.TASK:case Wn.AWAIT_TASK:return["正在处理任务","已完成任务","尝试处理任务"];case Wn.TASK_V2:return["正在处理任务","已完成任务","尝试处理任务"]'],
   ['case Wn.UNSPECIFIED:return["Processing request","Processed request","Process request attempted"];case Wn.SEARCH_SYMBOLS:return["Searching symbols","Searched symbols","Search symbols attempted"];case Wn.BACKGROUND_COMPOSER_FOLLOWUP:return["Following up in background","Followed up in background","Follow up in background attempted"];case Wn.KNOWLEDGE_BASE:return["Querying knowledge base for","Found in knowledge base","Query knowledge base attempted"];case Wn.CREATE_DIAGRAM:return["Creating diagram","Created diagram","Create diagram attempted"];case Wn.GENERATE_IMAGE:return["Generating image - may take a few minutes","Generated image","Attempted calling image generation api"];case Wn.FIX_LINTS:return["Fixing lints","Fixed lints","Fix lints attempted"];case Wn.READ_LINTS:return["Reading lints","Read lints","Read lints attempted"];case Wn.GO_TO_DEFINITION:return["Finding definition","Found","Find definition attempted"];case Wn.TODO_READ:return["Reading todos","Read todos","Read todos attempted"];case Wn.TODO_WRITE:return["Updating todos","Updated todos","Update todos attempted"];case Wn.LIST_DIR_V2:return["Listing","Listed","List attempted"];case Wn.READ_FILE_V2:return["Reading","Read","Read attempted"];case Wn.LIST_MCP_RESOURCES:return["Listing resources","Listed resources","List resources attempted"];case Wn.READ_MCP_RESOURCE:return["Reading","Read","Read attempted"];case Wn.CALL_MCP_TOOL:return["Calling MCP tool","Called MCP tool","Call MCP tool attempted"];case Wn.APPLY_AGENT_DIFF:return["Applying agent diff","Applied agent diff","Apply agent diff attempted"];case Wn.CREATE_PLAN:return["Creating plan","Created plan","Create plan attempted"];case Wn.FETCH_PULL_REQUEST:return["Fetching PR","Fetched PR","Fetch PR attempted"];case Wn.READ_PROJECT:return["Reading project","Read project","Read project attempted"];case Wn.UPDATE_PROJECT:return["Updating project","Updated project","Update project attempted"];case Wn.ASK_QUESTION:return["Asking","Asked","Ask attempted"];case Wn.SWITCH_MODE:return["Switching mode","Switched mode","Switch mode attempted"];case Wn.COMPUTER_USE:return["Using computer","Used computer","Use computer attempted"];case Wn.WRITE_SHELL_STDIN:return["Sending input to shell","Sent input to shell","Send input to shell attempted"];case Wn.RECORD_SCREEN:return["Recording","Recorded","Record attempted"];case Wn.REPORT_BUGFIX_RESULTS:return["Reporting results","Reported results","Report results attempted"];case Wn.AI_ATTRIBUTION:return["Learning from Cursor Blame","Learned from Cursor Blame","Learning from Cursor Blame attempted"];case Wn.MCP_AUTH:return["Authenticating MCP server","Authenticated MCP server","MCP authentication attempted"];case Wn.REFLECT:return["Reflecting","Reflected","Reflect attempted"]', 'case Wn.UNSPECIFIED:return["正在处理请求","已处理请求","尝试处理请求"];case Wn.SEARCH_SYMBOLS:return["正在搜索符号","已搜索符号","尝试搜索符号"];case Wn.BACKGROUND_COMPOSER_FOLLOWUP:return["正在后台跟进","已后台跟进","尝试后台跟进"];case Wn.KNOWLEDGE_BASE:return["正在查询知识库","已在知识库中找到","尝试查询知识库"];case Wn.CREATE_DIAGRAM:return["正在创建图表","已创建图表","尝试创建图表"];case Wn.GENERATE_IMAGE:return["正在生成图片，可能需要几分钟","已生成图片","尝试调用图片生成接口"];case Wn.FIX_LINTS:return["正在修复代码检查问题","已修复代码检查问题","尝试修复代码检查问题"];case Wn.READ_LINTS:return["正在读取代码检查","已读取代码检查","尝试读取代码检查"];case Wn.GO_TO_DEFINITION:return["正在查找定义","已找到定义","尝试查找定义"];case Wn.TODO_READ:return["正在读取待办","已读取待办","尝试读取待办"];case Wn.TODO_WRITE:return["正在更新待办","已更新待办","尝试更新待办"];case Wn.LIST_DIR_V2:return["正在列出","已列出","尝试列出"];case Wn.READ_FILE_V2:return["正在读取","已读取","尝试读取"];case Wn.LIST_MCP_RESOURCES:return["正在列出资源","已列出资源","尝试列出资源"];case Wn.READ_MCP_RESOURCE:return["正在读取资源","已读取资源","尝试读取资源"];case Wn.CALL_MCP_TOOL:return["正在调用 MCP 工具","已调用 MCP 工具","尝试调用 MCP 工具"];case Wn.APPLY_AGENT_DIFF:return["正在应用智能体差异","已应用智能体差异","尝试应用智能体差异"];case Wn.CREATE_PLAN:return["正在创建计划","已创建计划","尝试创建计划"];case Wn.FETCH_PULL_REQUEST:return["正在获取 PR","已获取 PR","尝试获取 PR"];case Wn.READ_PROJECT:return["正在读取项目","已读取项目","尝试读取项目"];case Wn.UPDATE_PROJECT:return["正在更新项目","已更新项目","尝试更新项目"];case Wn.ASK_QUESTION:return["正在提问","已提问","尝试提问"];case Wn.SWITCH_MODE:return["正在切换模式","已切换模式","尝试切换模式"];case Wn.COMPUTER_USE:return["正在使用电脑","已使用电脑","尝试使用电脑"];case Wn.WRITE_SHELL_STDIN:return["正在向终端发送输入","已向终端发送输入","尝试向终端发送输入"];case Wn.RECORD_SCREEN:return["正在录屏","已录屏","尝试录屏"];case Wn.REPORT_BUGFIX_RESULTS:return["正在报告结果","已报告结果","尝试报告结果"];case Wn.AI_ATTRIBUTION:return["正在学习 Cursor Blame","已学习 Cursor Blame","尝试学习 Cursor Blame"];case Wn.MCP_AUTH:return["正在认证 MCP 服务器","已认证 MCP 服务器","尝试认证 MCP 服务器"];case Wn.REFLECT:return["正在反思","已反思","尝试反思"]'],
   ['var lrx=wt("<span>attempted"),crx=wt("<div>"),urx=wt("<div class=composer-tool-call-inline><div role=button tabindex=0><span>"),bJf=" attempted"', 'var lrx=wt("<span>已尝试"),crx=wt("<div>"),urx=wt("<div class=composer-tool-call-inline><div role=button tabindex=0><span>"),bJf=" attempted"'],
@@ -2086,8 +2232,14 @@ const workbenchTargetedReplacements = [
   ['n.error||"An error occurred."', 'n.error||"发生错误。"'],
   ['function aox(n){return n.replace(/[-_]+/g," ").replace(/([a-z])([A-Z])/g,"$1 $2").replace(/\\b\\w/g,e=>e.toUpperCase())}', 'function aox(n){const e={browser_snapshot:"浏览器页面快照",browser_click:"浏览器点击",browser_press_key:"浏览器按键",browser_navigate:"浏览器导航",browser_type:"浏览器输入",browser_fill:"浏览器填写",browser_select_option:"浏览器选择选项",browser_scroll:"浏览器滚动",browser_drag:"浏览器拖动",browser_get_bounding_box:"浏览器获取边界框",browser_highlight:"浏览器高亮",browser_take_screenshot:"浏览器截图",browser_cdp:"浏览器 CDP",browser_lock:"浏览器锁定",browser_tabs:"浏览器标签页",browser_mouse_click_xy:"浏览器坐标点击"};if(e[n])return e[n];const t=n.replace(/[-_]+/g," ").replace(/([a-z])([A-Z])/g,"$1 $2").replace(/\\b\\w/g,e=>e.toUpperCase());return t==="MCP Tool"?"MCP 工具":t}'],
   ['function aox(n){const e={browser_snapshot:"浏览器页面快照",browser_click:"浏览器点击",browser_press_key:"浏览器按键",browser_navigate:"浏览器导航",browser_type:"浏览器输入",browser_fill:"浏览器填写",browser_select_option:"浏览器选择选项",browser_scroll:"浏览器滚动",browser_drag:"浏览器拖动",browser_get_bounding_box:"浏览器获取边界框",browser_highlight:"浏览器高亮",browser_take_screenshot:"浏览器截图",browser_cdp:"浏览器 CDP",browser_lock:"浏览器锁定",browser_tabs:"浏览器标签页",browser_mouse_click_xy:"浏览器坐标点击"};if(e[n])return e[n];const t=n.replace(/[-_]+/g," ").replace(/([a-z])([A-Z])/g,"$1 $2").replace(/\\b\\w/g,e=>e.toUpperCase());return t==="MCP Tool"?"MCP 工具":t}', 'function aox(n){const e={browser_snapshot:"Browser Snapshot",browser_click:"浏览器点击",browser_press_key:"浏览器按键",browser_navigate:"Browser Navigate",browser_type:"浏览器输入",browser_fill:"浏览器填写",browser_select_option:"浏览器选择选项",browser_scroll:"浏览器滚动",browser_drag:"浏览器拖动",browser_get_bounding_box:"浏览器获取边界框",browser_highlight:"浏览器高亮",browser_take_screenshot:"浏览器截图",browser_cdp:"浏览器 CDP",browser_lock:"浏览器锁定",browser_tabs:"浏览器标签页",browser_mouse_click_xy:"浏览器坐标点击"};if(e[n])return e[n];const t=n.replace(/[-_]+/g," ").replace(/([a-z])([A-Z])/g,"$1 $2").replace(/\\b\\w/g,e=>e.toUpperCase());return t==="MCP Tool"?"MCP 工具":t}'],
-  ['case"browser_navigate":{const s=Vkt(String(i.url||""),40);return s?{primary:r("已导航到","正在导航到","导航到"),secondary:s}:{primary:r("已导航","正在导航","导航")}}', 'case"browser_navigate":{const s=Vkt(String(i.url||""),40);return s?{primary:r("Navigated to","Navigating to","Navigate to"),secondary:s}:{primary:r("Navigated","Navigating","Navigate")}}'],
-  ['case"browser_snapshot":return{primary:r("已获取页面快照","正在获取页面快照","获取页面快照")};', 'case"browser_snapshot":return{primary:r("Took Snapshot","Taking Snapshot","Take Snapshot")};'],
+  ['case"browser_navigate":{const s=Vkt(String(i.url||""),40);return s?{primary:r("Navigated to","Navigating to","Navigate to"),secondary:s}:{primary:r("Navigated","Navigating","Navigate")}}', 'case"browser_navigate":{const s=Vkt(String(i.url||""),40);return s?{primary:r("已导航到","正在导航到","导航到"),secondary:s}:{primary:r("已导航","正在导航","导航")}}'],
+  ['case"browser_snapshot":return{primary:r("Took Snapshot","Taking Snapshot","Take Snapshot")};', 'case"browser_snapshot":return{primary:r("已获取页面快照","正在获取页面快照","获取页面快照")};'],
+  ['title:"Pending - Navigate"', 'title:"待处理 - 导航"'],
+  ['title:"Pending - Navigate (awaiting approval)"', 'title:"待处理 - 导航（等待批准）"'],
+  ['title:"Pending - CDP (awaiting approval)"', 'title:"待处理 - CDP（等待批准）"'],
+  ['title:"Loading - Navigate"', 'title:"加载中 - 导航"'],
+  ['title:"Loading - CDP"', 'title:"加载中 - CDP"'],
+  ['name:"Navigation",tools:[{title:"Navigate to URL"', 'name:"导航",tools:[{title:"导航到 URL"'],
   ['Q(Ne,Le?`Switch Agent Mode (${Le})`:"Switch Agent Mode")', 'Q(Ne,Le?`切换智能体模式（${Le}）`:"切换智能体模式")'],
   ['VlT=wt("<div>No results found.")', 'VlT=wt("<div>没有找到结果。")'],
   ['function _Nr(n,e=!1){const t=Math.floor((Date.now()-n)/1e3);return t<60?"Now":t<3600?`${Math.floor(t/60)}m${e?" ago":""}`:t<86400?`${Math.floor(t/3600)}h${e?" ago":""}`:t<604800?`${Math.floor(t/86400)}d${e?" ago":""}`:t<2592e3?`${Math.floor(t/604800)}w${e?" ago":""}`:t<31536e3?`${Math.floor(t/2592e3)}mo${e?" ago":""}`:`${Math.floor(t/31536e3)}y${e?" ago":""}`}', 'function _Nr(n,e=!1){const t=Math.floor((Date.now()-n)/1e3);return t<60?"刚刚":t<3600?`${Math.floor(t/60)} 分钟${e?"前":""}`:t<86400?`${Math.floor(t/3600)} 小时${e?"前":""}`:t<604800?`${Math.floor(t/86400)} 天${e?"前":""}`:t<2592e3?`${Math.floor(t/604800)} 周${e?"前":""}`:t<31536e3?`${Math.floor(t/2592e3)} 个月${e?"前":""}`:`${Math.floor(t/31536e3)} 年${e?"前":""}`}'],
@@ -2113,6 +2265,7 @@ const workbenchTargetedReplacements = [
   ['return o?`${o}${t?`: ${t}`:""}`:`Review${t?`: ${t}`:""}`', 'return o?`${o}${t?`: ${t}`:""}`:`审查${t?`: ${t}`:""}`'],
   ['Pe(Ro,(()=>{var wr=ss(()=>!!(ot()&&n.gitModeLabel));return()=>wr()?n.gitModeLabel:gi()?"All":"All Changes"})())', 'Pe(Ro,(()=>{var wr=ss(()=>!!(ot()&&n.gitModeLabel));return()=>wr()?n.gitModeLabel:gi()?"全部":"全部更改"})())'],
   ['content:ot()?n.gitModeLabel||"Git changes":"All changes from this Agent chat"', 'content:ot()?n.gitModeLabel||"Git 更改":"此智能体对话的全部更改"'],
+  ['label:"View All Changes",alias:"View All Changes"', 'label:"查看全部更改",alias:"查看全部更改"'],
   ['return()=>qs()?"Pending":`Pending Change${en()>1?"s":""}`', 'return()=>qs()?"待处理":"待处理更改"'],
   ['content:Ni()?"Latest changes from this Agent chat":"Changes waiting to be confirmed"', 'content:Ni()?"此智能体对话的最新更改":"等待确认的更改"'],
   ['new Gl("unified-diff-mode","Unified View"', 'new Gl("unified-diff-mode","统一视图"'],
@@ -2138,6 +2291,7 @@ const workbenchTargetedReplacements = [
   ['"Marking..."', '"正在标记..."'],
   ['"Ready for review"', '"可审查"'],
   ['`Switched to branch ${n.branchName}`', '`已切换到分支 ${n.branchName}`'],
+  ['`Switched to branch ${te}`', '`已切换到分支 ${te}`'],
   ['`Failed to checkout: ${o}`', '`检出失败：${o}`'],
   ['children:"Commit"', 'children:"提交"'],
   ['children:"Merge"', 'children:"合并"'],
@@ -2196,8 +2350,18 @@ const workbenchTargetedReplacements = [
   ['CJC=wt(\'<div><div class="flex justify-between items-center px-1.5 py-0.5"><div class="flex items-center gap-1 text-[12px] [color:var(--vscode-foreground)] opacity-80 min-w-0 overflow-hidden"><span>Press</span><span class="block overflow-hidden whitespace-nowrap text-ellipsis">to Stop</span></div><div class="flex items-center gap-2 shrink-0"><div class="flex items-center text-[12px] opacity-70 cursor-pointer hover:opacity-100 gap-0.5"role=button><span>Revert to <!>⌫</span></div><div role=button aria-label="Close Hint">\')', 'CJC=wt(\'<div><div class="flex justify-between items-center px-1.5 py-0.5"><div class="flex items-center gap-1 text-[12px] [color:var(--vscode-foreground)] opacity-80 min-w-0 overflow-hidden"><span>按</span><span class="block overflow-hidden whitespace-nowrap text-ellipsis">停止</span></div><div class="flex items-center gap-2 shrink-0"><div class="flex items-center text-[12px] opacity-70 cursor-pointer hover:opacity-100 gap-0.5"role=button><span>恢复为 <!>⌫</span></div><div role=button aria-label="关闭提示">\')'],
   ['CJC=wt(\'<div><div class="flex justify-between items-center px-1.5 py-0.5"><div class="flex items-center gap-1 text-[12px] [color:var(--vscode-foreground)] opacity-80 min-w-0 overflow-hidden"><span>Press</span><span class="block overflow-hidden whitespace-nowrap text-ellipsis">to Stop</span></div><div class="flex items-center gap-2 shrink-0"><div class="flex items-center text-[12px] opacity-70 cursor-pointer hover:opacity-100 gap-0.5"role=button><span>Revert to <!>\\u232B</span></div><div role=button aria-label="Close Hint">\')', 'CJC=wt(\'<div><div class="flex justify-between items-center px-1.5 py-0.5"><div class="flex items-center gap-1 text-[12px] [color:var(--vscode-foreground)] opacity-80 min-w-0 overflow-hidden"><span>按</span><span class="block overflow-hidden whitespace-nowrap text-ellipsis">停止</span></div><div class="flex items-center gap-2 shrink-0"><div class="flex items-center text-[12px] opacity-70 cursor-pointer hover:opacity-100 gap-0.5"role=button><span>恢复为 <!>\\u232B</span></div><div role=button aria-label="关闭提示">\')'],
   ['Co(p,"aria-label",`Revert keyboard shortcut to ${EIm}`)', 'Co(p,"aria-label",`将快捷键恢复为 ${EIm}`)'],
+  ['const dh=d??(Q&&!be?"Running command":"Ran command");', 'const dh=__cursorLocalizeShellDescription(d)??(Q&&!be?"正在运行命令":"已运行命令");'],
+  ['function eQv(n){return n.replace(/^run(?=\\s|$)\\s*/i,"")}function tQv(n,e,t,i){const r=e&&!t?"Running":"Ran",s=eQv(n?.trim()??""),o=s?s.charAt(0).toUpperCase()+s.slice(1):"command";return{action:r,details:et("span",{className:"ui-shell-tool-call__line-details",children:[V("span",{className:"ui-shell-tool-call__line-description",children:o}),i&&V("span",{className:"ui-shell-tool-call__line-summary",children:i})]})}}', `${shellDescriptionLocalizerSource}function eQv(n){return n.replace(/^run(?=\\s|$)\\s*/i,"")}function tQv(n,e,t,i){const r=e&&!t?"正在运行":"已运行",s=n?.trim()??"",o=__cursorLocalizeShellDescription(s)||eQv(s)||"命令";return{action:r,details:et("span",{className:"ui-shell-tool-call__line-details",children:[V("span",{className:"ui-shell-tool-call__line-description",children:o}),i&&V("span",{className:"ui-shell-tool-call__line-summary",children:i})]})}}`],
   ['Z=N?"Stop generation":o?"Processing voice input…":"Send message"', 'Z=N?"停止生成":o?"正在处理语音输入…":"发送消息"'],
   ['Z=N?"Stop generation":o?"Processing voice input\\u2026":"Send message"', 'Z=N?"停止生成":o?"正在处理语音输入\\u2026":"发送消息"'],
+  ['<span>Auto has significantly higher usage limits</span><button>Switch to Auto</button>', '<span>Auto 拥有明显更高的用量额度</span><button>切换到 Auto</button>'],
+  ['<span>Switched to Auto, which provides significantly higher usage limits.</span>', '<span>已切换到 Auto，可获得明显更高的用量额度。</span>'],
+  ['return ao()?.popupMessage??"Auto has significantly higher usage limits"', 'return ao()?.popupMessage??"Auto 拥有明显更高的用量额度"'],
+  ['Pe(Hc,()=>ao()?.acceptLabel??"Switch to Auto")', 'Pe(Hc,()=>ao()?.acceptLabel??"切换到 Auto")'],
+  ['ao()?.bannerMessage??"Switched to Auto, which provides significantly higher usage limits."', 'ao()?.bannerMessage??"已切换到 Auto，可获得明显更高的用量额度。"'],
+  ['o.action.value.suggestedModel==="default"&&o.label==="Switch Model"&&(u="Switch to Auto")', 'o.action.value.suggestedModel==="default"&&o.label==="Switch Model"&&(u="切换到 Auto")'],
+  ['secondaryButton:{label:"Switch to Auto"', 'secondaryButton:{label:"切换到 Auto"'],
+  ['<span>Skip and Continue', '<span>跳过并继续'],
   ['"aria-label":"Stop generation"', '"aria-label":"停止生成"'],
   ['"aria-label":"Send message"', '"aria-label":"发送消息"'],
   ['V(rf,{shortcut:p,title:"Stop"})', 'V(rf,{shortcut:p,title:"停止"})'],
@@ -2569,6 +2733,78 @@ function patchAdditionalTextFiles() {
   ]);
 }
 
+const cursorSkillDescriptionTranslations = {
+  babysit: '持续检查 PR 评论、明确冲突和 CI，并把 PR 维护到可合并状态。',
+  canvas: '在聊天旁打开可交互的 Cursor 画布，用于展示分析、审计、图表、表格、时间线或需要可视化布局的结果。',
+  'create-hook': '创建 Cursor 钩子，包括 hooks.json、钩子脚本，以及围绕智能体事件的自动化行为。',
+  'create-rule': '创建长期生效的 Cursor 规则，用于编码规范、项目约定、文件匹配规则、RULE.md、.cursor/rules 或 AGENTS.md。',
+  'create-skill': '创建 Cursor 智能体技能，适用于编写新技能或了解 SKILL.md 结构。',
+  'create-subagent': '创建专用子智能体，用于代码审查、调试或特定领域任务。',
+  loop: '按本地固定间隔循环运行提示词或技能，适用于轮询状态、定时任务或周期性唤醒智能体；不用于一次性任务。',
+  'migrate-to-skills': '把 Cursor 规则和斜杠命令迁移为智能体技能格式。',
+  sdk: '指导使用 Cursor SDK 构建应用、脚本、CI 流水线或自动化。',
+  shell: '把 /shell 后面的内容按原样作为终端命令执行。仅在用户明确调用 /shell 时使用。',
+  'split-to-prs': '把当前工作拆成更小、便于审查的 PR。',
+  statusline: '配置 CLI 自定义状态行，用于在提示词上方显示会话上下文。',
+  'update-cli-config': '查看和修改 ~/.cursor/cli-config.json 中的 Cursor CLI 配置。',
+  'update-cursor-settings': '修改 Cursor/VS Code 的 settings.json 用户设置。',
+};
+
+function replaceYamlFoldedDescription(frontmatter, description) {
+  const lines = frontmatter.split('\n');
+  const start = lines.findIndex((line) => /^description:\s*>-/.test(line));
+  if (start < 0) return frontmatter;
+
+  let end = start + 1;
+  while (end < lines.length && (/^\s/.test(lines[end]) || lines[end].trim() === '')) {
+    end += 1;
+  }
+
+  const replacement = ['description: >-', `  ${description}`];
+  return [...lines.slice(0, start), ...replacement, ...lines.slice(end)].join('\n');
+}
+
+function patchCursorSkillsMetadata() {
+  const skillsRoot = path.join(os.homedir(), '.cursor/skills-cursor');
+  if (!fs.existsSync(skillsRoot)) {
+    console.log(`Skip missing Cursor skills metadata: ${skillsRoot}`);
+    return;
+  }
+
+  let scanned = 0;
+  let changed = 0;
+  for (const skillName of Object.keys(cursorSkillDescriptionTranslations).sort()) {
+    const file = path.join(skillsRoot, skillName, 'SKILL.md');
+    if (!fs.existsSync(file)) {
+      console.log(`Skip missing Cursor skill: ${skillName}`);
+      continue;
+    }
+
+    scanned += 1;
+    const before = fs.readFileSync(file, 'utf8');
+    const match = before.match(/^---\n([\s\S]*?)\n---/);
+    if (!match) {
+      console.log(`Skip Cursor skill without frontmatter: ${skillName}`);
+      continue;
+    }
+
+    const frontmatter = match[1];
+    const updatedFrontmatter = replaceYamlFoldedDescription(frontmatter, cursorSkillDescriptionTranslations[skillName]);
+    if (updatedFrontmatter === frontmatter) continue;
+
+    const after = `---\n${updatedFrontmatter}\n---${before.slice(match[0].length)}`;
+    if (after === before) continue;
+
+    const backup = backupFile(file);
+    fs.writeFileSync(file, after);
+    changed += 1;
+    console.log(`Patched Cursor skill metadata: ${skillName}`);
+    if (backup) console.log(`Backup: ${backup}`);
+  }
+
+  console.log(`Patched Cursor skills metadata: ${changed}/${scanned}`);
+}
+
 function isCursorAppRunning() {
   try {
     const output = childProcess.execFileSync('ps', ['-axo', 'args='], { encoding: 'utf8' });
@@ -2805,6 +3041,7 @@ console.log(`Target app resources: ${appRoot}`);
 patchWorkbench();
 patchCursorExtensionPackages();
 patchAdditionalTextFiles();
+patchCursorSkillsMetadata();
 if (shouldPatchUserStorage) patchUserPersistentStorage();
 else console.log('Skip Cursor user storage patch: disabled by --no-user-storage.');
 patchProductChecksums();
